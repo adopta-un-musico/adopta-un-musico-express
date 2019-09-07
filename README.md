@@ -53,7 +53,7 @@ borrar banda
 
 #### Musician model
 
-```JSON
+```Javascript
 {
 	email: string,
 	password: string,
@@ -70,7 +70,7 @@ borrar banda
 
 #### Band model
 
-```JSON
+```Javascript
 {
 	username: string,
 	password: string,
@@ -88,7 +88,7 @@ borrar banda
 
 #### Message model
 
-```JSON
+```Javascript
 {
 	giver: ObjectID<musician>,
 	receiver: ObjectID<musician>,
