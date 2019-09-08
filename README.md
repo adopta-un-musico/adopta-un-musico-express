@@ -51,13 +51,13 @@ borrar banda
 
 ## Models
 
-#### Musician model
+#### User model
 
 ```Javascript
 {
-	email: string,
-	password: string,
-	musical genres: array string,
+	email: string, required
+	password: string, required
+	musical genres: array string, required
 	instruments: array string,
 	location: string,
 	nickname: string (not necessarily unique),
@@ -72,12 +72,10 @@ borrar banda
 
 ```Javascript
 {
-	username: string,
-	password: string,
-	manager: ObjectID<musician>,
+	manager: ObjectID<User>, required
 	bandname: string,
-	musical genres: array string,
-	members: [ObjectID<musician>],
+	musical genres: array string, required
+	members: [ObjectID<User>], required
 	location: string,
 	timestamps: {
 		created at: time,
@@ -90,8 +88,8 @@ borrar banda
 
 ```Javascript
 {
-	giver: ObjectID<musician>,
-	receiver: ObjectID<musician>,
+	giver: ObjectID<User>,
+	receiver: ObjectID<User>,
 	message: string (limit 140 characters),
 	timestamps: {
 			created at: time,
@@ -100,13 +98,11 @@ borrar banda
 }
 ```
 
-We should relate them by IDs.
-
 ## Links
 
 ### Git
 
-[Link Repo]()
+[Link Repo](https://github.com/adopta-un-musico/adopta-un-musico-express)
 [Link Deploy]()
 
 ### Slides
