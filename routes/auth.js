@@ -12,6 +12,7 @@ router.get('/signup', (req, res, next) => {
   });
   
 router.post('/newUser', (req, res , next) =>{
+
     const { email, password } = req.body;
     if (email !== '' && password !== '') {
         User.findOne({ email })
@@ -36,6 +37,50 @@ router.post('/newUser', (req, res , next) =>{
       } else {
         res.render('signup', { error: 'Los campos no pueden estar vacios' });
       }
+});
+
+
+
+router.get('/login', (req, res, next) => {
+
+  res.render('login'); 
+});
+
+
+
+router.post('/login', (req, res, next) => {
+
+  const { email, password } = req.body;
+  if (email !== '' && password !== '') {
+    User.findOne({ email })
+      .then((user) => {
+        if (user) {
+          if (bcrypt.compareSync(password, user.hashedPassword)) {
+            req.session.currentUser = user;
+            res.redirect('/home');
+          } else {
+            res.render('login', { error: 'usuario o contraseña incorrectos' });
+          }
+        } else {
+          res.redirect('/signup');
+        }
+      })
+      .catch(() => {
+        res.render('login', { error: 'error vuelve a intentarlo' });
+      });
+  } else {
+    res.render('login', { error: 'Los campos no pueden estar vacios' });
+  }
+});
+
+
+router.get('/logout', (req, res, next) => {
+  req.session.destroy((err) => {
+    if (err) {
+      next(err);
+    }
+    res.redirect('/login');
+  });
 });
 
 module.exports = router;
