@@ -18,12 +18,14 @@ router.post('/newUser', (req, res , next) =>{
         User.findOne({ email })
           .then((user) => {
             if (user) {
-              res.render('signup', { error: 'El usuario que has introducido ya existe' });
+              req.flash('error', 'El usuario que has introducido ya existe');
+              res.redirect('/signup');
             } else {
               const salt = bcrypt.genSaltSync(bcryptSalt);
               const hashedPassword = bcrypt.hashSync(password, salt);
               User.create({ email, hashedPassword })
                 .then(() => {
+                  req.flash('info', 'Usuario creado correctamente');
                   res.redirect('/home');
                 })
                 .catch((error) => {
@@ -32,10 +34,13 @@ router.post('/newUser', (req, res , next) =>{
             }
           })
           .catch((error) => {
-            res.render('signup', { error: 'error vuelve a intentarlo' });
+            req.flash('error', 'error vuelve a intentarlo');
+            res.redirect('/signup');
           });
       } else {
-        res.render('signup', { error: 'Los campos no pueden estar vacios' });
+        req.flash('error', 'Los campos no pueden estar vacios');
+        res.redirect('/signup');
+        
       }
 });
 
