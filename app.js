@@ -7,7 +7,10 @@ const sassMiddleware = require('node-sass-middleware');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const flash = require('connect-flash');
+const { notifications } = require('./middlewares');
 
+mongoose.connect('mongodb://localhost/proyecto', { useNewUrlParser: true });
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -47,11 +50,12 @@ app.use(
   }),
 );
 
+app.use(flash());
 app.use((req, res, next) => {
   app.locals.currentUser = req.session.currentUser;
   next();
 });
-
+app.use(notifications(app));
 app.use('/', indexRouter);
 app.use('/', authRouter);
 app.use('/home', homeRouter);

@@ -5,6 +5,14 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    {{{body}}}
+    <div class="notifications">
+        {{#if infoMessages}}
+            <p class="info">{{infoMessages}}</p>
+        {{/if}}
+        {{#if errorMessages }}
+            <p class="error">{{ errorMessages }}</p>
+        {{/if}}
+</div>
+{{{body}}}
   </body>
 </html>
