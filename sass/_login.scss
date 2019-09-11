@@ -17,6 +17,7 @@ body {
 }
 
 .box input[type='email'],
+.box input[type='text'],
 .box input[type='password'] {
   background: none;
   display: block;
@@ -32,6 +33,7 @@ body {
 }
 
 .box input[type='email']:focus,
+.box input[type='text']:focus,
 .box input[type='password']:focus {
   width: 280px;
   border-color: #2ecc71;

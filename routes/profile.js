@@ -29,9 +29,9 @@ router.get('/update/:userId', function(req, res, next) {
 
 router.post('/:userId', function(req, res, next) {
     const { userId } = req.params;
-    const { email }  = req.body;
+    const { email, nickname }  = req.body;
 
-    User.findByIdAndUpdate(userId, { email: email })
+    User.findByIdAndUpdate(userId, { email: email, nickname: nickname })
     .then((user) =>{
         console.log(user);
         req.flash('info', 'Perfil Actualizado correctamente');
