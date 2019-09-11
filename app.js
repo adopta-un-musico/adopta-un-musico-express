@@ -9,6 +9,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
 const { notifications } = require('./middlewares');
+const hbs= require('hbs');
 
 require('dotenv').config();
 
@@ -25,6 +26,14 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+hbs.registerHelper('if_equal', function(a, b, opts) {
+  if (a == b) {
+      return opts.fn(this)
+  } else {
+      return opts.inverse(this)
+  }
+});
+
 
 app.use(logger('dev'));
 app.use(express.json());
