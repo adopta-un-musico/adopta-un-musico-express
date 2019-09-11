@@ -1,0 +1,12 @@
+<h1>Bandas</h1>
+{{#if bands}}
+    {{#each bands}}
+        <h1>Nombre:{{bands.bandname}}</h1>
+        <h1>Ciudad:{{bands.location}}</h1>
+        <h1>Generos musicales:{{bands.musicalGenres}}</h1>
+        <a href="/bandas/profile/{{bands._id}}">Ver perfil banda</a>
+    {{/each}}
+{{else}}
+    <p>Ups! Todavía no hay ninguna banda :(</p>
+{{/if}}
+

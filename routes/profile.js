@@ -22,7 +22,7 @@ router.get('/update/:userId', function(req, res, next) {
 
     User.findById(userId)
     .then((user)=>{
-        res.render('update', {user});
+        res.render('update', { user });
     })
     .catch(next);
 });
