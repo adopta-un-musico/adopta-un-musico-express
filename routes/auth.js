@@ -12,7 +12,7 @@ router.get('/signup', (req, res, next) => {
 });
 
 router.post('/newUser', (req, res, next) => {
-  const { email, password } = req.body;
+  const { email, password, nickname } = req.body;
   if (email !== '' && password !== '') {
     User.findOne({ email })
       .then(user => {
@@ -22,7 +22,7 @@ router.post('/newUser', (req, res, next) => {
         } else {
           const salt = bcrypt.genSaltSync(bcryptSalt);
           const hashedPassword = bcrypt.hashSync(password, salt);
-          User.create({ email, hashedPassword })
+          User.create({ email, hashedPassword, nickname })
             .then(user => {
               req.session.currentUser = user;
               req.flash('info', 'Usuario creado correctamente');
