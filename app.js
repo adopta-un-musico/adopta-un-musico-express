@@ -16,7 +16,6 @@ require('dotenv').config();
 mongoose.connect(process.env.MONGODB_URI);
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
 const homeRouter = require('./routes/home');
 const profileRouter = require('./routes/profile');
@@ -27,12 +26,6 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-hbs.registerHelper('if_equal', function (a, b, opts) {
-  if (a == b) {
-    return opts.fn(this);
-  }
-  return opts.inverse(this);
-});
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -72,7 +65,6 @@ app.use(notifications());
 app.use('/', indexRouter);
 app.use('/', authRouter);
 app.use('/home', homeRouter);
-app.use('/users', usersRouter);
 app.use('/profile', profileRouter);
 app.use('/bandas', bandsRouter);
 
