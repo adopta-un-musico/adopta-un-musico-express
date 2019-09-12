@@ -8,8 +8,8 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
+const hbs = require('hbs');
 const { notifications } = require('./middlewares');
-const hbs= require('hbs');
 
 require('dotenv').config();
 
@@ -27,14 +27,12 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-hbs.registerHelper('if_equal', function(a, b, opts) {
+hbs.registerHelper('if_equal', function (a, b, opts) {
   if (a == b) {
-      return opts.fn(this)
-  } else {
-      return opts.inverse(this)
+    return opts.fn(this);
   }
+  return opts.inverse(this);
 });
-
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -45,8 +43,8 @@ app.use(
     src: path.join(__dirname, 'sass'),
     dest: path.join(__dirname, 'public'),
     indentedSyntax: false, // true = .sass and false = .scss
-    sourceMap: true
-  })
+    sourceMap: true,
+  }),
 );
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -54,15 +52,15 @@ app.use(
   session({
     store: new MongoStore({
       mongooseConnection: mongoose.connection,
-      ttl: 24 * 60 * 60 // 1 day
+      ttl: 24 * 60 * 60, // 1 day
     }),
     secret: 'ironhack',
     resave: true,
     saveUninitialized: true,
     cookie: {
-      maxAge: 24 * 60 * 60 * 1000
-    }
-  })
+      maxAge: 24 * 60 * 60 * 1000,
+    },
+  }),
 );
 
 app.use(flash());
@@ -79,12 +77,12 @@ app.use('/profile', profileRouter);
 app.use('/bandas', bandsRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
