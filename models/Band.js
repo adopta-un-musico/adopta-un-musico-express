@@ -5,23 +5,21 @@ const { Schema } = mongoose;
 const bandSchema = new Schema(
   {
     manager: {
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'User',
       required: true
     },
     bandname: String,
     musicalGenres: {
       type: Array,
-      required: true
     },
     members: [
       {
-        type: mongoose.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'User',
-        required: true
       }
     ],
-    location: String
+    location: String,
   },
   {
     timestamps: {
