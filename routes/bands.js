@@ -37,4 +37,26 @@ router.get("/profile/:bandId", function(req, res, next) {
     res.render("band_profile", { band });
   });
 });
+router.get("/:bandId/update", function(req, res, next) {
+  const { bandId } = req.params;
+  Band.findById(bandId)
+    .then(band => {
+      res.render("band_update", { band });
+    })
+    .catch(next);
+});
+
+router.post("/:bandId/update_band", function(req, res, next) {
+  const { bandId } = req.params;
+  const { name, location, musicalGenres } = req.body;
+
+  Band.findByIdAndUpdate(bandId, {
+    bandname: name,
+    location: location,
+    musicalGenres: musicalGenres
+  }).then(band => {
+    req.flash("info", "Banda Actualizada correctamente");
+    res.redirect(`/bandas/profile/${bandId}`);
+  });
+});
 module.exports = router;
