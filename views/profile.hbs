@@ -5,3 +5,10 @@
 {{#if isMe }}
 <a href="/profile/update/{{user._id}}">Actualizar datos</a>
 {{/if}}
+<h2>Mis bandas:</h2>
+{{#each band}}
+
+<p>Nombre de la banda: {{bandname}}</p>
+<p>Genero musical: {{musicalGenres}}</p>
+<a href="/bandas/profile/{{_id}}">Ver perfil banda</a>
+{{/each}}

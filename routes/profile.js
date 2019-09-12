@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 const express = require('express');
 const User = require('../models/User');
+const Band = require('../models/Band');
 
 const router = express.Router();
 
@@ -11,7 +12,8 @@ router.get('/:userId', async (req, res, next) => {
     const user = await User.findById(userId);
     if (user) {
       const isMe = req.session.currentUser._id === user._id.toString();
-      res.render('profile', { user, isMe });
+      const band = await Band.find({manager: userId});
+      res.render('profile', { user, isMe, band});
     }
   } catch (error) {
     next(error);
