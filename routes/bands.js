@@ -73,4 +73,19 @@ router.post('/:bandId/update_band', async (req, res, next) => {
   }
 });
 
+router.get('/:bandId/delete', async (req, res, next) =>{
+    const { bandId } = req.params;
+
+    try {
+
+      const band = await Band.findByIdAndDelete(bandId)
+      req.flash('info', 'Banda eliminada correctamente');
+      res.redirect(`/bandas/all`);
+      
+    } catch (error) {
+
+      next(error);
+    }
+});
+
 module.exports = router;
