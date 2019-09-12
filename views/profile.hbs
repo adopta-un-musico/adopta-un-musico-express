@@ -2,6 +2,6 @@
 <p>Nombre: {{ user.email }}</p>
 <p>Nickname: {{user.nickname}}</p>
 <p>Created At: {{ user.created_at }}</p>
- {{#if_equal currentUser._id  user._id }}
-    <a href="/profile/update/{{user._id}}">Actualizar datos</a>
-{{/if_equal}}
+{{#if isMe }}
+<a href="/profile/update/{{user._id}}">Actualizar datos</a>
+{{/if}}
