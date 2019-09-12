@@ -11,34 +11,28 @@ router.get('/signup', (req, res, next) => {
   res.render('signup');
 });
 
-router.post('/newUser', (req, res, next) => {
+router.post('/newUser', async (req, res, next) => {
   const { email, password, nickname } = req.body;
-  if (email !== '' && password !== '') {
-    User.findOne({ email })
-      .then((user) => {
-        if (user) {
-          req.flash('error', 'El usuario que has introducido ya existe');
-          res.redirect('/signup');
-        } else {
-          const salt = bcrypt.genSaltSync(bcryptSalt);
-          const hashedPassword = bcrypt.hashSync(password, salt);
-          User.create({ email, hashedPassword, nickname })
-            .then((user) => {
-              req.session.currentUser = user;
-              req.flash('info', 'Usuario creado correctamente');
-              res.redirect('/home');
-            })
-            .catch((error) => {
-              throw error;
-            });
-        }
-      })
-      .catch((error) => {
-        req.flash('error', 'error vuelve a intentarlo');
+  try {
+    if (email !== '' && password !== '') {
+      const user = await User.findOne({ email });
+      if (user) {
+        req.flash('error', 'El usuario que has introducido ya existe');
         res.redirect('/signup');
-      });
-  } else {
-    req.flash('error', 'Los campos no pueden estar vacios');
+      } else {
+        const salt = bcrypt.genSaltSync(bcryptSalt);
+        const hashedPassword = bcrypt.hashSync(password, salt);
+        const username = await User.create({ email, hashedPassword, nickname });
+        req.session.currentUser = username;
+        req.flash('info', 'Usuario creado correctamente');
+        res.redirect('/home');
+      }
+    } else {
+      req.flash('error', 'Los campos no pueden estar vacios');
+      res.redirect('/signup');
+    }
+  } catch (error) {
+    req.flash('error', 'error vuelve a intentarlo');
     res.redirect('/signup');
   }
 });
@@ -47,29 +41,28 @@ router.get('/login', (req, res, next) => {
   res.render('login');
 });
 
-router.post('/login', (req, res, next) => {
+router.post('/login', async (req, res, next) => {
   const { email, password } = req.body;
-  if (email !== '' && password !== '') {
-    User.findOne({ email })
-      .then((user) => {
-        if (user) {
-          if (bcrypt.compareSync(password, user.hashedPassword)) {
-            req.session.currentUser = user;
-            res.redirect('/home');
-          } else {
-            req.flash('error', 'Usuario o contraseña inmcorrectos');
-            res.redirect('/login');
-          }
+  try {
+    if (email !== '' && password !== '') {
+      const user = await User.findOne({ email });
+      if (user) {
+        if (bcrypt.compareSync(password, user.hashedPassword)) {
+          req.session.currentUser = user;
+          res.redirect('/home');
         } else {
-          res.redirect('/signup');
+          req.flash('error', 'Usuario o contraseña inmcorrectos');
+          res.redirect('/login');
         }
-      })
-      .catch(() => {
-        req.flash('error', 'Vuelve a intentarlo');
-        res.redirect('/login');
-      });
-  } else {
-    req.flash('error', 'Los campos no pueden estar vacios');
+      } else {
+        res.redirect('/signup');
+      }
+    } else {
+      req.flash('error', 'Los campos no pueden estar vacios');
+      res.redirect('/login');
+    }
+  } catch {
+    req.flash('error', 'Vuelve a intentarlo');
     res.redirect('/login');
   }
 });
