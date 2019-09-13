@@ -46,7 +46,6 @@ router.get("/profile/:bandId", async (req, res, next) => {
         return true;
       }
     });
-    console.log(ifBand);
     res.render("band_profile", { band, isMe, ifBand });
   } catch (error) {
     next(error);
