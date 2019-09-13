@@ -86,28 +86,37 @@ h1 {
 span {
   color: fontColor; }
 
+img {
+  width: 15%; }
+
 a {
   text-decoration: none;
   font-size: 22px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
   color: #1b95e0; }
 
 .wrap {
-  margin: 5%; }
+  margin: 5%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif; }
 
 .card {
   margin: 0 auto;
   text-align: center;
-  max-width: 80%; }
+  max-width: 80%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif; }
 
 .card p {
-  color: #8899a6; }
+  color: #8899a6;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif; }
 
 .band {
   margin: 0 auto;
-  text-align: center; }
+  text-align: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif; }
 
 .description {
-  color: #FFFFFF; }
+  color: #FFFFFF;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif; }
 
 .myHr {
   max-width: 50%;
@@ -115,6 +124,19 @@ a {
   border: 1px solid;
   height: 2px;
   background-color: #A9A9A9; }
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 35%;
+  font-size: 18px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif; }
 
 body {
   margin: 0;

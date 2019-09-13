@@ -19,32 +19,43 @@ h1{
 span{
     color: fontColor;
 }
+
+img{
+    width: 15%;
+}
+
 a {
     text-decoration: none;
     font-size: 22px;
+    font-family: $fontFamily;
     color: $linkColor;
   }
 
 .wrap{
     margin: 5%;
+    font-family: $fontFamily;
 }
 
 .card{
     margin: 0 auto;
     text-align: center;
     max-width: 80%;
+    font-family: $fontFamily;
 }
 .card p{
     color: $paragraph;
+    font-family: $fontFamily;
 }
 
 .band{
     margin: 0 auto;
     text-align: center;
+    font-family: $fontFamily;
 }
 
 .description{
     color: $fontColor;
+    font-family: $fontFamily;
 }
 
 .myHr{
@@ -54,3 +65,17 @@ a {
     height:2px;
     background-color:$gris;
 }
+
+button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 35%;
+    font-size: 18px;
+    font-family: $fontFamily;
+  }
