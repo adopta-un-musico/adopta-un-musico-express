@@ -1,23 +1,23 @@
-const express = require('express');
-const Band = require('../models/Band');
-const User = require('../models/User');
+const express = require("express");
+const Band = require("../models/Band");
+const User = require("../models/User");
 
 const router = express.Router();
 
-router.get('/all', async (req, res, next) => {
+router.get("/all", async (req, res, next) => {
   try {
     const bands = await Band.find();
-    res.render('all_bands', { bands });
+    res.render("all_bands", { bands });
   } catch (error) {
     next(error);
   }
 });
 
-router.get('/:userId', (req, res, next) => {
-  res.render('create_band');
+router.get("/:userId", (req, res, next) => {
+  res.render("create_band");
 });
 
-router.post('/:userId/new', async (req, res, next) => {
+router.post("/:userId/new", async (req, res, next) => {
   const { userId } = req.params;
   const { name, location, musicalGenres } = req.body;
   try {
@@ -26,39 +26,39 @@ router.post('/:userId/new', async (req, res, next) => {
       bandname: name,
       musicalGenres,
       location,
-      manager: userId,
+      manager: userId
     });
-    req.flash('info', 'Banda creada correctamente');
-    res.redirect('/home');
+    req.flash("info", "Banda creada correctamente");
+    res.redirect("/home");
   } catch (error) {
     next(error);
   }
 });
 
-router.get('/profile/:bandId', async (req, res, next) => {
+router.get("/profile/:bandId", async (req, res, next) => {
   const { bandId } = req.params;
 
   try {
     const band = await Band.findById(bandId);
     const isMe = req.session.currentUser._id === band.manager.toString();
     console.log(isMe);
-    res.render('band_profile', { band, isMe });
+    res.render("band_profile", { band, isMe });
   } catch (error) {
     next(error);
   }
 });
 
-router.get('/:bandId/update', async (req, res, next) => {
+router.get("/:bandId/update", async (req, res, next) => {
   const { bandId } = req.params;
   try {
     const band = await Band.findById(bandId);
-    res.render('band_update', { band });
+    res.render("band_update", { band });
   } catch (error) {
     next(error);
   }
 });
 
-router.post('/:bandId/update_band', async (req, res, next) => {
+router.post("/:bandId/update_band", async (req, res, next) => {
   const { bandId } = req.params;
   const { name, location, musicalGenres } = req.body;
 
@@ -67,28 +67,38 @@ router.post('/:bandId/update_band', async (req, res, next) => {
     const band = await Band.findByIdAndUpdate(bandId, {
       bandname: name,
       location,
-      musicalGenres,
+      musicalGenres
     });
-    req.flash('info', 'Banda Actualizada correctamente');
+    req.flash("info", "Banda Actualizada correctamente");
     res.redirect(`/bandas/profile/${bandId}`);
   } catch (error) {
     next(error);
   }
 });
 
-router.get('/:bandId/delete', async (req, res, next) =>{
-    const { bandId } = req.params;
+router.get("/:bandId/delete", async (req, res, next) => {
+  const { bandId } = req.params;
 
-    try {
+  try {
+    const band = await Band.findByIdAndDelete(bandId);
+    req.flash("info", "Banda eliminada correctamente");
+    res.redirect(`/bandas/all`);
+  } catch (error) {
+    next(error);
+  }
+});
+router.get("/:bandId/:userId", async (req, res, next) => {
+  const { bandId, userId } = req.params;
 
-      const band = await Band.findByIdAndDelete(bandId)
-      req.flash('info', 'Banda eliminada correctamente');
-      res.redirect(`/bandas/all`);
-      
-    } catch (error) {
-
-      next(error);
-    }
+  try {
+    const band = await Band.findByIdAndUpdate(bandId, {
+      $push: { members: userId }
+    });
+    req.flash("info", "Te has añadido a la banda correctamente");
+    res.redirect(`/bandas/all`);
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = router;
