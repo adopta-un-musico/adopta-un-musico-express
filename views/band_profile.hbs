@@ -13,4 +13,8 @@
 <a href="/bandas/{{band._id}}/update/">Actualizar Banda</a>
 <a href="/bandas/{{band._id}}/delete">Eliminar Banda</a>
 {{/if}}
+{{#if ifBand}}
+<p>Ya estás en la banda</p>
+{{else}}
 <a href="/bandas/{{band._id}}/{{currentUser._id}}">Unirse a la Banda</a>
+{{/if}}
