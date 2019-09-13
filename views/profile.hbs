@@ -1,14 +1,25 @@
-<h1>User Profile</h1>
-<p>Nombre: {{ user.email }}</p>
-<p>Nickname: {{user.nickname}}</p>
-<p>Created At: {{ user.created_at }}</p>
-{{#if isMe }}
-<a href="/profile/update/{{user._id}}">Actualizar datos</a>
-{{/if}}
-<h2>Mis bandas:</h2>
-{{#each band}}
+<div class="wrap">
+    <div class="card">
+        <h1>User Profile Card</h1>
+        <img src="/images/mexican-music.jpeg" alt="mexican-music">
+        <h2>{{user.nickname}}</h2>
+        <span>quiere unirse a una banda</span>
+        <p class="title">{{ user.email }}</p>
+        <p class="title"><span>Joined on</span> {{ user.created_at }}</p>
+        <hr class="myHr">
+    </div>
 
-<p>Nombre de la banda: {{bandname}}</p>
-<p>Genero musical: {{musicalGenres}}</p>
-<a href="/bandas/profile/{{_id}}">Ver perfil banda</a>
-{{/each}}
+
+    <div class="band">
+        {{#if isMe }}
+        <a href="/profile/update/{{user._id}}">Actualizar datos</a>
+        {{/if}}
+        <h2>Mis bandas:</h2>
+        {{#each band}}
+
+        <p>Nombre de la banda: {{bandname}}</p>
+        <p>Genero musical: {{musicalGenres}}</p>
+        <a href="/bandas/profile/{{_id}}">Ver perfil banda</a>
+        {{/each}}
+    </div>
+</div>
