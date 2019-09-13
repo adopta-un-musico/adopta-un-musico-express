@@ -1,5 +1,6 @@
 const express = require('express');
 const Band = require('../models/Band');
+const User = require('../models/User');
 
 const router = express.Router();
 
@@ -39,7 +40,9 @@ router.get('/profile/:bandId', async (req, res, next) => {
 
   try {
     const band = await Band.findById(bandId);
-    res.render('band_profile', { band });
+    const isMe = req.session.currentUser._id === band.manager.toString();
+    console.log(isMe);
+    res.render('band_profile', { band, isMe });
   } catch (error) {
     next(error);
   }

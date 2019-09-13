@@ -3,5 +3,7 @@
 <h1>Ciudad:{{band.location}}</h1>
 <h1>Generos musicales:{{band.musicalGenres}}</h1>
 
+{{#if isMe}}
 <a href="/bandas/{{band._id}}/update/">Actualizar Banda</a>
 <a href="/bandas/{{band._id}}/delete">Eliminar Banda</a>
+{{/if}}
