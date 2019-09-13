@@ -4,6 +4,9 @@
 <p>Created At: {{ user.created_at }}</p>
 {{#if isMe }}
 <a href="/profile/update/{{user._id}}">Actualizar datos</a>
+<a href="/messages/{{user._id}}/all">Ver mensajes</a>
+{{else}}
+<a href="/messages/send/{{user._id}}">Enviar mensaje</a>
 {{/if}}
 <h2>Mis bandas:</h2>
 {{#each band}}
