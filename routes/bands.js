@@ -41,7 +41,13 @@ router.get("/profile/:bandId", async (req, res, next) => {
   try {
     const band = await Band.findById(bandId).populate("members");
     const isMe = req.session.currentUser._id === band.manager.toString();
-    res.render("band_profile", { band, isMe });
+    const ifBand = band.members.filter(element => {
+      if (req.session.currentUser._id === element._id.toString()) {
+        return true;
+      }
+    });
+    console.log(ifBand);
+    res.render("band_profile", { band, isMe, ifBand });
   } catch (error) {
     next(error);
   }
