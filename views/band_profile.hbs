@@ -2,6 +2,12 @@
 <h1>Nombre:{{band.bandname}}</h1>
 <h1>Ciudad:{{band.location}}</h1>
 <h1>Generos musicales:{{band.musicalGenres}}</h1>
+<p>Members:
+    {{#each band.members}}
+    <a href="/profile/{{this._id}}">{{this.nickname}}</a>
+
+    {{/each}}
+</p>
 
 {{#if isMe}}
 <a href="/bandas/{{band._id}}/update/">Actualizar Banda</a>

@@ -39,9 +39,8 @@ router.get("/profile/:bandId", async (req, res, next) => {
   const { bandId } = req.params;
 
   try {
-    const band = await Band.findById(bandId);
+    const band = await Band.findById(bandId).populate("members");
     const isMe = req.session.currentUser._id === band.manager.toString();
-    console.log(isMe);
     res.render("band_profile", { band, isMe });
   } catch (error) {
     next(error);
