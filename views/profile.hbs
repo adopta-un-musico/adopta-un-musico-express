@@ -6,21 +6,21 @@
         <span>quiere unirse a una banda</span>
         <p class="title">{{ user.email }}</p>
         <p class="title"><span>Joined on</span> {{ user.created_at }}</p>
-        <hr class="myHr">
     </div>
     <div class="band">
         {{#if isMe }}
-        <a href="/profile/update/{{user._id}}">Actualizar datos</a>
-        <a href="/messages/{{user._id}}/all">Ver mensajes</a>
+       <button><a href="/profile/update/{{user._id}}">Update profile</a></button>
+        <button><a href="/messages/{{user._id}}/all">Ver mensajes</a></button>
+        
         {{else}}
         <a href="/messages/send/{{user._id}}">Enviar mensaje</a>
         {{/if}}
-        <h2>Mis bandas:</h2>
+        <h2>My bands</h2>
         {{#each band}}
 
-        <p>Nombre de la banda: {{bandname}}</p>
-        <p>Genero musical: {{musicalGenres}}</p>
-        <a href="/bandas/profile/{{_id}}">Ver perfil banda</a>
+        <p>{{bandname}}</p>
+        <span>Musical style: {{musicalGenres}}</span> <br><br>
+        <button><a href="/bandas/profile/{{_id}}">Band Profile</a></button>
         {{/each}}
     </div>
 </div>
