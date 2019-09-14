@@ -1,25 +1,28 @@
-{{#if noBand}}
-<p>{{noBand}}</p>
-{{else}}
-<h1>Perfil de la banda {{band.bandname}}</h1>
-<h1>Nombre:{{band.bandname}}</h1>
-<h1>Ciudad:{{band.location}}</h1>
-<h1>Generos musicales:{{band.musicalGenres}}</h1>
-<p>Members:
-    {{#each band.members}}
-    <a href="/profile/{{this._id}}">{{this.nickname}}</a>
+<app-profile>
+    <div class="wrap">
+        {{#if noBand}}
+        <p>{{noBand}}</p>
+        {{else}}
+        <h1>{{band.bandname}}</h1>
+        <p>Ciudad: {{band.location}}</p>
+        <p>Generos musicales: {{band.musicalGenres}}</p>
+        <p>Members:
+            {{#each band.members}}
+            <a href="/profile/{{this._id}}"> {{this.nickname}}</a>
 
-    {{/each}}
-</p>
+            {{/each}}
+        </p>
 
-{{#if isMe}}
-<a href="/bandas/{{band._id}}/update/">Actualizar Banda</a>
-<a href="/bandas/{{band._id}}/delete">Eliminar Banda</a>
-{{/if}}
-{{#if ifBand}}
-<p>Ya estás en la banda</p>
-<a href="/bandas/{{band._id}}/{{currentUser._id}}/leave">Salir de la Banda</a>
-{{else}}
-<a href="/bandas/{{band._id}}/{{currentUser._id}}">Unirse a la Banda</a>
-{{/if}}
-{{/if}}
+        {{#if isMe}}
+        <button><a href="/bandas/{{band._id}}/update/">Actualizar Banda</a></button>
+        <button><a href="/bandas/{{band._id}}/delete">Eliminar Banda</a></button>
+        {{/if}}
+        {{#if ifBand}}
+        <button><a href="/bandas/{{band._id}}/{{currentUser._id}}/leave">Salir de la Banda</a></button>
+        {{else}}
+        <<button>a href="/bandas/{{band._id}}/{{currentUser._id}}">Unirse a la Banda</a></button>
+            {{/if}}
+            {{/if}}
+    </div>
+
+</app-profile>
