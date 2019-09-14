@@ -12,17 +12,21 @@
 
             {{/each}}
         </p>
-
         {{#if isMe}}
         <button><a href="/bandas/{{band._id}}/update/">Actualizar Banda</a></button>
-        <button><a href="/bandas/{{band._id}}/delete">Eliminar Banda</a></button>
+        <div class="danger">
+            <button class="danger"><a href="/bandas/{{band._id}}/delete">Eliminar Banda</a></button>
+        </div>
         {{/if}}
         {{#if ifBand}}
-        <button><a href="/bandas/{{band._id}}/{{currentUser._id}}/leave">Salir de la Banda</a></button>
+        <div class="danger"></div>
+            <button class="danger"><a href="/bandas/{{band._id}}/{{currentUser._id}}/leave" class="danger">Salir de la Banda</a></button>
+        </div>
         {{else}}
-        <<button><a href="/bandas/{{band._id}}/{{currentUser._id}}">Unirse a la Banda</a></button>
-            {{/if}}
-            {{/if}}
+        <button><a href="/bandas/{{band._id}}/{{currentUser._id}}">Unirse a la Banda</a></button>
+        {{/if}}
+        {{/if}}
+
     </div>
 
 </app-profile>

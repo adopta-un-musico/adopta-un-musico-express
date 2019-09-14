@@ -188,7 +188,10 @@ app-band .band {
   app-band .band button {
     width: 100%; }
 
-button {
+app-profile .danger a {
+  color: #dc3545; }
+
+app-profile button {
   border: none;
   outline: 0;
   display: inline-block;
