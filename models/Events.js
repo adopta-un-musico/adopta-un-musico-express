@@ -8,12 +8,17 @@ const eventsSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: "Band",
         },
+        event_name: String,
         location: String,
         recomendations:[{
             type: Schema.Types.ObjectId,
             ref: "User",
         }],
         date: Date,
+        asistentes:[{
+            type: Schema.Types.ObjectId,
+            ref: "User",
+        }]
     },
 
     {

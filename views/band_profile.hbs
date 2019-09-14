@@ -12,8 +12,21 @@
 
             {{/each}}
         </p>
+        {{#if event}}
+        <h1>Next Events:</h1>
+        {{#each event}}
+        <h3>{{event_name}}</h3>
+        <p>Location: {{location}}</p>
+        <p>Date: {{date}}</p>
+        <button><a href="/events/detail/{{_id}}">Ver en detalle</a></button>
+        {{/each}}
+        {{else}}
+        <h1>Next Events:</h1>
+        <p>Esta banda todavía no tiene ningún evento.</p>
+        {{/if}}
         {{#if isMe}}
         <button><a href="/bandas/{{band._id}}/update/">Actualizar Banda</a></button>
+        <button><a href="/events/new/{{band._id}}/">Añadir Evento</a></button>
         <div class="danger">
             <button class="danger"><a href="/bandas/{{band._id}}/delete">Eliminar Banda</a></button>
         </div>
