@@ -40,13 +40,19 @@ router.get("/profile/:bandId", async (req, res, next) => {
 
   try {
     const band = await Band.findById(bandId).populate("members");
-    const isMe = req.session.currentUser._id === band.manager.toString();
-    const ifBand = band.members.filter(element => {
-      if (req.session.currentUser._id === element._id.toString()) {
-        return true;
-      }
-    });
-    res.render("band_profile", { band, isMe, ifBand });
+    console.log("wolalaaa", band);
+    if (band !== null) {
+      const isMe = req.session.currentUser._id === band.manager.toString();
+      const ifBand = band.members.filter(element => {
+        if (req.session.currentUser._id === element._id.toString()) {
+          return true;
+        }
+      });
+      res.render("band_profile", { band, isMe, ifBand });
+    } else {
+      const noBand = "La banda no existe o no está creada.";
+      res.render("band_profile", { noBand });
+    }
   } catch (error) {
     next(error);
   }

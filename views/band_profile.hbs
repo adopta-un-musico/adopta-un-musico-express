@@ -1,3 +1,6 @@
+{{#if noBand}}
+<p>{{noBand}}</p>
+{{else}}
 <h1>Perfil de la banda {{band.bandname}}</h1>
 <h1>Nombre:{{band.bandname}}</h1>
 <h1>Ciudad:{{band.location}}</h1>
@@ -18,4 +21,5 @@
 <a href="/bandas/{{band._id}}/{{currentUser._id}}/leave">Salir de la Banda</a>
 {{else}}
 <a href="/bandas/{{band._id}}/{{currentUser._id}}">Unirse a la Banda</a>
+{{/if}}
 {{/if}}
