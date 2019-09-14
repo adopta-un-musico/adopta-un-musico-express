@@ -1,0 +1,11 @@
+<h1>Todos los mensajes</h1>
+{{#if messages}}
+{{#each messages}}
+    <p>Enviado por: {{sender.nickname}} </p>
+    <p>Mensaje: {{message}}</p>
+    <a href="/messages/send/{{sender._id}}">Responder</a>
+    <a href="/messages/detail/{{sender._id}}">Ver en detalle</a>
+{{/each}}
+{{else}}
+<p>Todavía no tienes ningún mensaje :(</p>
+{{/if}}
