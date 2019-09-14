@@ -8,11 +8,12 @@
         <p class="title"><span>Joined on</span> {{ user.created_at }}</p>
         <hr class="myHr">
     </div>
-
-
     <div class="band">
         {{#if isMe }}
         <a href="/profile/update/{{user._id}}">Actualizar datos</a>
+        <a href="/messages/{{user._id}}/all">Ver mensajes</a>
+        {{else}}
+        <a href="/messages/send/{{user._id}}">Enviar mensaje</a>
         {{/if}}
         <h2>Mis bandas:</h2>
         {{#each band}}
