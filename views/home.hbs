@@ -1,3 +1,5 @@
-<h1>Hello! {{currentUser.email}}</h1>
-<a href="/profile/{{currentUser._id}}">Ver Perfil</a>
-<p><a href="/logout">Cerrar Sesión</a></p>
+<h1>Hello {{user.nickname}} !</h1>
+<li><a href="/profile/{{currentUser._id}}">Ver Perfil</a></li>
+<li><a href="/bandas/{{currentUser._id}}">Crear Banda</a></li>
+<li><a href="/bandas/all">Ver todas las Bandas</a></li>
+<li><a href="/logout">Cerrar Sesión</a></li>

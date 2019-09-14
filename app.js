@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
+const hbs = require('hbs');
 const { notifications } = require('./middlewares');
 
 require('dotenv').config();
@@ -15,10 +16,11 @@ require('dotenv').config();
 mongoose.connect(process.env.MONGODB_URI);
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
 const homeRouter = require('./routes/home');
 const profileRouter = require('./routes/profile');
+const bandsRouter = require('./routes/bands');
+const messageRouter = require('./routes/message');
 
 const app = express();
 
@@ -35,8 +37,8 @@ app.use(
     src: path.join(__dirname, 'sass'),
     dest: path.join(__dirname, 'public'),
     indentedSyntax: false, // true = .sass and false = .scss
-    sourceMap: true
-  })
+    sourceMap: true,
+  }),
 );
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -44,15 +46,15 @@ app.use(
   session({
     store: new MongoStore({
       mongooseConnection: mongoose.connection,
-      ttl: 24 * 60 * 60 // 1 day
+      ttl: 24 * 60 * 60, // 1 day
     }),
     secret: 'ironhack',
     resave: true,
     saveUninitialized: true,
     cookie: {
-      maxAge: 24 * 60 * 60 * 1000
-    }
-  })
+      maxAge: 24 * 60 * 60 * 1000,
+    },
+  }),
 );
 
 app.use(flash());
@@ -64,16 +66,17 @@ app.use(notifications());
 app.use('/', indexRouter);
 app.use('/', authRouter);
 app.use('/home', homeRouter);
-app.use('/users', usersRouter);
 app.use('/profile', profileRouter);
+app.use('/bandas', bandsRouter);
+app.use('/messages', messageRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

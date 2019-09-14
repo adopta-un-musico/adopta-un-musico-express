@@ -1,0 +1,5 @@
+@import "_mixins";
+
+button {
+  @include button;
+}

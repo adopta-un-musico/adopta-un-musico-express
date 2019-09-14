@@ -1,12 +1,13 @@
-@import '../../sass/notifications';
-@import '../../sass/login';
+@import "../../sass/notifications";
+@import "../../sass/login";
+@import "../../sass/variables";
+@import "../../sass/userLogin";
+@import "../../sass/index";
+@import "../../sass/allBands";
+@import "../../sass/bandProfile";
 
 body {
   margin: 0;
   padding: 0;
   font: 14px sans-serif;
-}
-
-a {
-  color: #00b7ff;
 }
