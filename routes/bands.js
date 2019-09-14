@@ -28,6 +28,9 @@ router.post("/:userId/new", async (req, res, next) => {
       location,
       manager: userId
     });
+    const push = await Band.findByIdAndUpdate(band._id, {
+      $push: { members: userId }
+    });
     req.flash("info", "Banda creada correctamente");
     res.redirect("/home");
   } catch (error) {
