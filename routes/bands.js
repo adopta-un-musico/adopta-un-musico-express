@@ -104,5 +104,18 @@ router.get("/:bandId/:userId", async (req, res, next) => {
     next(error);
   }
 });
+router.get("/:bandId/:userId/leave", async (req, res, next) => {
+  const { bandId, userId } = req.params;
+
+  try {
+    const band = await Band.findByIdAndUpdate(bandId, {
+      $pull: { members: userId }
+    });
+    req.flash("info", "Has salido  correctamente de la banda");
+    res.redirect(`/bandas/all`);
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = router;

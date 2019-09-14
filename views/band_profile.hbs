@@ -15,6 +15,7 @@
 {{/if}}
 {{#if ifBand}}
 <p>Ya estás en la banda</p>
+<a href="/bandas/{{band._id}}/{{currentUser._id}}/leave">Salir de la Banda</a>
 {{else}}
 <a href="/bandas/{{band._id}}/{{currentUser._id}}">Unirse a la Banda</a>
 {{/if}}
