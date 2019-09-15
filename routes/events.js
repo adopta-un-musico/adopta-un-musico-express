@@ -22,6 +22,8 @@ router.get("/detail/:eventId", async (req, res, next) => {
     try {
         const event = await Events.find({_id: eventId }).populate("event_manager");
         const eventToView = event[0];
+        const totalRecommend = eventToView.recomendations;
+        const result = totalRecommend.length;
         const isMe = req.session.currentUser._id === eventToView.event_manager.manager.toString();
 
         // Comporbamos si el usuario ya ha recomendado este evento
@@ -41,7 +43,7 @@ router.get("/detail/:eventId", async (req, res, next) => {
               return true;
             }
           });
-        res.render('event_detail', { eventToView, isMe, ifRecommended, ifuserWillAssist })
+        res.render('event_detail', { eventToView, isMe, ifRecommended, ifuserWillAssist, result })
     } catch (error) {
 
         next(error);
@@ -176,7 +178,6 @@ router.get('/:userId/recommendations',  async (req, res, next) => {
 
     try {
         const recommendations = await Events.find( { recomendations: userId } ).populate("event_manager")
-        console.log(recommendations);
         res.render('my_recommendations', { recommendations });
 
     } catch (error) {
