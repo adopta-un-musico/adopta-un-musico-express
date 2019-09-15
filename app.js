@@ -22,6 +22,8 @@ const profileRouter = require('./routes/profile');
 const bandsRouter = require('./routes/bands');
 const messageRouter = require('./routes/message');
 const eventsRouter = require('./routes/events');
+const searchRouter = require('./routes/search');
+
 
 const app = express();
 
@@ -35,6 +37,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(
   sassMiddleware({
     src: path.join(__dirname, 'sass'),
@@ -43,6 +46,7 @@ app.use(
     sourceMap: true,
   }),
 );
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(
@@ -65,6 +69,7 @@ app.use((req, res, next) => {
   app.locals.currentUser = req.session.currentUser;
   next();
 });
+
 app.use(notifications());
 app.use('/', indexRouter);
 app.use('/', authRouter);
@@ -73,6 +78,7 @@ app.use('/profile', profileRouter);
 app.use('/bandas', bandsRouter);
 app.use('/messages', messageRouter);
 app.use('/events', eventsRouter);
+app.use('/search', searchRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
