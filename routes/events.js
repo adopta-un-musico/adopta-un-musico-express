@@ -186,5 +186,20 @@ router.get('/:userId/recommendations',  async (req, res, next) => {
     }
 });
 
+router.get('/:userId/event', async (req, res, next) =>{
+
+    const { userId } = req.params;
+
+    try {
+        const iWillAssist = await Events.find({asistentes: userId}).populate("event_manager")
+        const username = await User.findById(userId)
+        console.log(iWillAssist);
+        res.render('events', { iWillAssist, username })
+
+    } catch (error) {
+        next(error);
+    }
+})
+
 
 module.exports = router;
