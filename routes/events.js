@@ -8,7 +8,8 @@ router.get("/all", async (req, res, next) => {
 
 
     try {
-        const events = await Events.find()
+        const events = await Events.find().populate("event_manager")
+        console.log(events);
         res.render('all_events', { events });
     } catch (error) {
         next(error);
