@@ -2,6 +2,7 @@
 const express = require("express");
 const User = require("../models/User");
 const Band = require("../models/Band");
+const Events = require("../models/Events");
 
 const router = express.Router();
 
