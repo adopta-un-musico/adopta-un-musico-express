@@ -1,0 +1,7 @@
+<h1>Recomendaciones:</h1>
+{{#each recommendations}}
+<p>Nombre del evento: {{event_name}}</p>
+<p>Ubicación: {{location}}</p>
+<p>Fecha: {{date}}</p>
+<p>Banda: <a href="/bandas/profile/{{event_manager._id}}">{{event_manager.bandname}}</a></p>
+{{/each}}

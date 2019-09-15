@@ -1,0 +1,13 @@
+<h1>Eventos</h1>
+{{#if events}}
+{{#each events}}
+<p>Nombre: {{event_name}}</p>
+<p>Ubicación. {{location}}</p>
+<p>Fecha: {{date}}</p>
+<p>Banda: {{event_manager.bandname}}</p>
+<p>Generos musicales de la banda: {{event_manager.musicalGenres}}</p>
+<button><a href="/events/detail/{{_id}}">Ver en detalle</a></button>
+{{/each}}
+{{else}}
+<p>Todavía no hay ningun evento</p>
+{{/if}}

@@ -1,0 +1,10 @@
+<h1>Actualizar Evento</h1>
+<form action="/events/{{event._id}}/upd" method="POST">
+<input type="text" name="name" id="name" value="{{event.event_name}}">
+<input type="date" name="date" value="{{event.date}}">
+<select name="location" value="{{event.location}}">
+   <option value="Barcelona">Barcelona</option> 
+   <option value="Madrid">Madrid</option> 
+</select>
+<input type="submit" value="Crear Evento" />
+</form>

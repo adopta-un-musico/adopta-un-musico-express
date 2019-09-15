@@ -9,10 +9,12 @@
     </div>
     <div class="band">
         {{#if isMe }}
-       <button><a href="/profile/update/{{user._id}}">Update profile</a></button>
+        <button><a href="/profile/update/{{user._id}}">Update profile</a></button>
         <button><a href="/messages/{{user._id}}/all">Ver mensajes</a></button>
+        <button><a href="/events/{{user._id}}/recommendations">Ver Recomendaciones</a></button>
         
         {{else}}
+        <button><a href="/events/{{user._id}}/recommendations">Ver Recomendaciones</a></button>
         <a href="/messages/send/{{user._id}}">Enviar mensaje</a>
         {{/if}}
         <h2>My bands</h2>

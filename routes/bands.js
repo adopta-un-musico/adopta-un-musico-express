@@ -1,6 +1,7 @@
 const express = require("express");
 const Band = require("../models/Band");
 const User = require("../models/User");
+const Events = require("../models/Events");
 
 const router = express.Router();
 
@@ -51,7 +52,9 @@ router.get("/profile/:bandId", async (req, res, next) => {
           return true;
         }
       });
-      res.render("band_profile", { band, isMe, ifBand });
+      const event = await Events.find({event_manager: band._id})
+      console.log(event);
+      res.render("band_profile", { band, isMe, ifBand, event });
     } else {
       const noBand = "La banda no existe o no está creada.";
       res.render("band_profile", { noBand });
