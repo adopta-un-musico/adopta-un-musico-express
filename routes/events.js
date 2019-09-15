@@ -170,6 +170,19 @@ router.post('/:eventId/upd', async (req, res, next) =>{
     }
  
 });
+router.get('/:userId/recommendations',  async (req, res, next) => {
+
+    const { userId } = req.params;
+
+    try {
+        const recommendations = await Events.find( { recomendations: userId } ).populate("event_manager")
+        console.log(recommendations);
+        res.render('my_recommendations', { recommendations });
+
+    } catch (error) {
+      next(error);
+    }
+});
 
 
 module.exports = router;
