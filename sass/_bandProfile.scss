@@ -1,18 +1,13 @@
-@import "_mixins";
+@import '_mixins';
 
-app-profile{
-  .danger{
-    a{
+app-profile {
+  .danger {
+    a {
       color: #dc3545;
     }
   }
+
   button {
     @include button;
-    }
-
-
+  }
 }
-
-
-
-
