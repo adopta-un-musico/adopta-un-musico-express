@@ -33,6 +33,7 @@
         {{/if}}
         {{#if ifBand}}
         <div class="danger"></div>
+            <button><a href="/chat/{{band.id}}/{{currentUser.nickname}}">Chat</a></button>
             <button class="danger"><a href="/bandas/{{band._id}}/{{currentUser._id}}/leave" class="danger">Salir de la Banda</a></button>
         </div>
         {{else}}
