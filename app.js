@@ -11,6 +11,7 @@ const flash = require('connect-flash');
 const hbs = require('hbs');
 const { notifications } = require('./middlewares');
 
+
 require('dotenv').config();
 
 mongoose.connect(process.env.MONGODB_URI);
@@ -23,6 +24,7 @@ const bandsRouter = require('./routes/bands');
 const messageRouter = require('./routes/message');
 const eventsRouter = require('./routes/events');
 const searchRouter = require('./routes/search');
+const chatRouter = require('./routes/chat');
 
 
 const app = express();
@@ -79,6 +81,7 @@ app.use('/bandas', bandsRouter);
 app.use('/messages', messageRouter);
 app.use('/events', eventsRouter);
 app.use('/search', searchRouter);
+app.use('/chat', chatRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

@@ -8,6 +8,7 @@ var app = require('../app');
 var debug = require('debug')('project:server');
 var http = require('http');
 
+
 /**
  * Get port from environment and store in Express.
  */
@@ -88,3 +89,20 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+const socket = require('socket.io');
+const io = socket(server);
+io.on('connection', (socket) =>{
+     const user = "";
+     console.log("conectado", socket.id);
+     socket.on('chat message', (msg) =>{
+        io.emit('chat message', msg);
+        const user = msg.username;
+        console.log("Username : " + msg.username);
+     });
+
+    // socket.on('escribiendo', (data) =>{
+    //   socket.broadcast.emit('escribiendo', {username: data.username})
+    // })
+
+});
