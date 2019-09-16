@@ -95,14 +95,21 @@ const io = socket(server);
 io.on('connection', (socket) =>{
      const user = "";
      console.log("conectado", socket.id);
+
      socket.on('chat message', (msg) =>{
         io.emit('chat message', msg);
         const user = msg.username;
-        console.log("Username : " + msg.username);
      });
 
-    // socket.on('escribiendo', (data) =>{
-    //   socket.broadcast.emit('escribiendo', {username: data.username})
-    // })
+     socket.on('typing', (data) =>{
+        console.log(data.username);
+        socket.broadcast.emit("isTyping", { username: data.username, message: data.message }); 
+     });
 
+     socket.on("stopTyping", () => { 
+
+        socket.broadcast.emit("userstopTyping"); 
+      });
+
+      
 });
