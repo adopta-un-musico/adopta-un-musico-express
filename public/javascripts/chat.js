@@ -2,39 +2,40 @@ $(function () {
     const username = $('#username').text();
     const message = document.getElementById('text');
     const userTyping = document.getElementById('typingu');
+    const room = $('#band').text();
     var socket = io();
+    console.log(room);
+    socket.on('connect', () =>{
+        socket.emit('room', { sala: room });
+
+    });
+
     $('form').submit(function(e){
       e.preventDefault();
-     // if(e.keyCode == 13){
-            socket.emit('chat message', {
-                    username,
-                    message: message.value,
-                } 
-            );
-            message.value = '';
-     // }else{
-       //   socket.emit('escribiendo', {username})
-     // }
-      
-
-    });
-
-    socket.on('chat message', function(msg){
-        $('#messages').append($('<p>').text(msg.username + ": " + msg.message));
+      socket.emit('chat message', {
+          username,
+          message: message.value,
+          sala: room
       });
-    
-    message.addEventListener('keypress', () => {
-        socket.emit('typing', {username, message: "is typing..."})
-      });  
+      message.value = '';
+   });
 
-    socket.on('isTyping', data =>{
-      userTyping.innerText = data.username + " " + data.message;
+   socket.on('chat message', (msg) => {
+        $('#messages').append($('<p>').text(msg.username + ": " + msg.message));
     });
 
-    message.addEventListener('keyup', () =>{
-      socket.emit('stopTyping');
+    message.addEventListener('keypress', () => {
+        socket.emit('typing', {username, message: "is typing...", sala: room})
+    });  
+ 
+    socket.on('isTyping', data =>{
+       userTyping.innerText = data.username + " " + data.message;
+    });
+
+   message.addEventListener('keyup', () =>{
+      socket.emit('stopTyping', {sala: room});
     });
     socket.on('userstopTyping', () =>{
-      userTyping.innerHTML = "";
+       userTyping.innerText = "";
     });
-});
+  });

@@ -96,19 +96,24 @@ io.on('connection', (socket) =>{
      const user = "";
      console.log("conectado", socket.id);
 
+     socket.on('room', (e) =>{
+        socket.join(e.sala);
+        console.log("te has unido a la sala: " +  e.sala);
+     });
+     
      socket.on('chat message', (msg) =>{
-        io.emit('chat message', msg);
+        io.sockets.in(msg.sala).emit('chat message', msg);
         const user = msg.username;
+
      });
 
      socket.on('typing', (data) =>{
         console.log(data.username);
-        socket.broadcast.emit("isTyping", { username: data.username, message: data.message }); 
+        socket.broadcast.to(data.sala).emit( 'isTyping', { username: data.username, message: data.message }); 
      });
 
-     socket.on("stopTyping", () => { 
-
-        socket.broadcast.emit("userstopTyping"); 
+     socket.on("stopTyping", (data) => { 
+       socket.broadcast.to(data.sala).emit('userstopTyping'); 
       });
 
       
