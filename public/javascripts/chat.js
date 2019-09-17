@@ -32,7 +32,7 @@ $(function () {
        userTyping.innerText = data.username + " " + data.message;
     });
 
-   message.addEventListener('keyup', () =>{
+    $('form').submit('keyup', () =>{
       socket.emit('stopTyping', {sala: room});
     });
     socket.on('userstopTyping', () =>{
