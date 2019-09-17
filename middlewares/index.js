@@ -17,6 +17,5 @@ const notifications = () => (req, res, next) => {
 
 module.exports = {
   checkSession,
-  notifications,
-  
+  notifications
 };
