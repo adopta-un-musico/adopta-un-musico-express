@@ -25,6 +25,7 @@ const bandSchema = new Schema(
         ref: "User"
       }
   ],
+    requests: { type: String, default: "Abiertas"},
     location: String
   },
   {

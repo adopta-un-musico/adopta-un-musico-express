@@ -47,14 +47,21 @@ router.get("/profile/:bandId", async (req, res, next) => {
     console.log("wolalaaa", band);
     if (band !== null) {
       const isMe = req.session.currentUser._id === band.manager.toString();
+      //Comprobamos si el usuario ya es miembro de la banda.
       const ifBand = band.members.filter(element => {
-        if (req.session.currentUser._id === element._id.toString()) {
-          return true;
-        }
+            if (req.session.currentUser._id === element._id.toString()) {
+              return true;
+            }
       });
+      //Comprobamos si la petición ya ha sido enviada a la banda.
+      const ifPetition = band.petitions.filter(element => {
+            if (req.session.currentUser._id === element._id.toString()) {
+              return true;
+            }
+      });
+      const ifOpenRequest = band.requests === "Abiertas";
       const event = await Events.find({event_manager: band._id})
-      console.log(event);
-      res.render("band_profile", { band, isMe, ifBand, event });
+      res.render("band_profile", { band, isMe, ifBand, event, ifPetition, ifOpenRequest });
     } else {
       const noBand = "La banda no existe o no está creada.";
       res.render("band_profile", { noBand });
@@ -76,14 +83,14 @@ router.get("/:bandId/update", async (req, res, next) => {
 
 router.post("/:bandId/update_band", async (req, res, next) => {
   const { bandId } = req.params;
-  const { name, location, musicalGenres } = req.body;
-
+  const { name, location, musicalGenres, petitions } = req.body;
   try {
     // eslint-disable-next-line no-unused-vars
     const band = await Band.findByIdAndUpdate(bandId, {
       bandname: name,
       location,
-      musicalGenres
+      musicalGenres,
+      requests: petitions
     });
     req.flash("info", "Banda Actualizada correctamente");
     res.redirect(`/bandas/profile/${bandId}`);
@@ -129,5 +136,55 @@ router.get("/:bandId/:userId/leave", async (req, res, next) => {
     next(error);
   }
 });
+router.get("/petition/:bandId/:userId", async (req, res, next) => {
+  const { bandId, userId } = req.params;
 
+  try {
+      const band = await Band.findByIdAndUpdate(bandId, { $push: { petitions: userId } });
+      req.flash("info", "La peticion ha sido enviada a la banda");
+      res.redirect(`/bandas/profile/${bandId}`);
+  } catch (error) {
+    next(error)
+  }
+});
+router.get("/petitionc/:bandId/check", async (req, res, next) => {
+
+  const { bandId } = req.params;
+
+   try {
+        const petitions = await Band.findById(bandId).populate('petitions');
+        console.log(petitions);
+        res.render('all_petitions', { petitions, bandId });
+  } catch (error) {
+        next(error);
+  }
+});
+router.get("/decline/:userId/:bandId/user", async (req, res, next) => {
+    const { userId, bandId } = req.params;
+
+    try {
+      const band = await Band.findByIdAndUpdate(bandId, {
+        $pull: { petitions: userId }
+      });
+      req.flash("info", "Usuario rechazado");
+      res.redirect(`/bandas/all`);
+    } catch (error) {
+      next(error);
+    }
+}); 
+
+router.get("/accept/:userId/:bandId/user", async (req, res, next) => {
+  const { userId, bandId } = req.params;
+
+  try {
+    const band = await Band.findByIdAndUpdate(bandId, {
+      $push: { members: userId }
+    });
+    const pull = await Band.findByIdAndUpdate(bandId, { $pull:{petitions: userId }});
+    req.flash("info", "Usuario Aceptado");
+    res.redirect(`/bandas/all`);
+  } catch (error) {
+    next(error);
+  }
+});  
 module.exports = router;

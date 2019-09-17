@@ -30,6 +30,7 @@
         <div class="danger">
             <button class="danger"><a href="/bandas/{{band._id}}/delete">Eliminar Banda</a></button>
         </div>
+        <button><a href="/bandas/petitionc/{{band._id}}/check/">Revisar Peticiones</a></button>
         {{/if}}
         {{#if ifBand}}
         <div class="danger"></div>
@@ -37,7 +38,15 @@
             <button class="danger"><a href="/bandas/{{band._id}}/{{currentUser._id}}/leave" class="danger">Salir de la Banda</a></button>
         </div>
         {{else}}
-        <button><a href="/bandas/{{band._id}}/{{currentUser._id}}">Unirse a la Banda</a></button>
+            {{#if ifPetition}}
+                <button><a href="">Tu petición está siendo valorada por la banda.</a></button>
+            {{else}}
+                    {{#if ifOpenRequest}}
+                        <button><a href="/bandas/petition/{{band._id}}/{{currentUser._id}}">Enviar peticion a la Banda</a></button>
+                    {{else}}
+                        <p>Las peticiones están cerradas</p>
+                    {{/if}}
+            {{/if}}    
         {{/if}}
         {{/if}}
 
