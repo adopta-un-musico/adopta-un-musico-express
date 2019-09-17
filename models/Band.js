@@ -19,6 +19,12 @@ const bandSchema = new Schema(
         ref: "User"
       }
     ],
+    petitions:[
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+      }
+  ],
     location: String
   },
   {
