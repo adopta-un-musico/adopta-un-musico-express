@@ -176,8 +176,7 @@ router.get("/:userId/event", async (req, res, next) => {
 
   try {
     const iWillAssist = await Events.find({ asistentes: userId }).populate(
-      "event_manager"
-    );
+      "event_manager");
     const username = await User.findById(userId);
     console.log(iWillAssist);
     res.render("events", { iWillAssist, username });
