@@ -3,6 +3,7 @@ const express = require("express");
 const User = require("../models/User");
 const Band = require("../models/Band");
 const Events = require("../models/Events");
+const Notifications = require("../models/Notifications");
 
 const router = express.Router();
 
@@ -14,7 +15,8 @@ router.get("/:userId", async (req, res, next) => {
     if (user) {
       const isMe = req.session.currentUser._id === user._id.toString();
       const band = await Band.find({ members: userId });
-      res.render("profile", { user, isMe, band });
+      const notificationsCount = await Notifications.find( {receiver: req.session.currentUser._id, visited: 0} ).count();
+      res.render("profile", { user, isMe, band,  notificationsCount});
     }
   } catch (error) {
     next(error);

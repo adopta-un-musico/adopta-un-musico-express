@@ -13,8 +13,9 @@ const notificationSchema = new Schema(
     },
     sender_band: {
         type: Schema.Types.ObjectId,
-        ref: 'User',
-    }
+        ref: 'Band',
+    },
+    visited: { type: Number, default: 0 },
   },
   {
     timestamps: {
