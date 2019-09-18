@@ -95,6 +95,11 @@ io.on("connection", socket => {
 
   socket.on("room", e => {
     socket.join(e.sala);
+    Chat.find({room: e.sala}).then( function (docs) {
+      console.log(docs);
+      io.sockets.in(e.sala).emit("all messages", docs);
+    });
+ 
     console.log("te has unido a la sala: " + e.sala);
   });
 
