@@ -35,10 +35,10 @@ router.get("/update/:userId", async (req, res, next) => {
 
 router.post("/:userId", async (req, res, next) => {
   const { userId } = req.params;
-  const { email, nickname } = req.body;
+  const { email, nickname, musicalGenres, instruments } = req.body;
   try {
     // eslint-disable-next-line no-unused-vars
-    const user = await User.findByIdAndUpdate(userId, { email, nickname });
+    const user = await User.findByIdAndUpdate(userId, { email, nickname, musicalGenres, instruments });
     req.flash("info", "Perfil Actualizado correctamente");
     res.redirect(`/profile/${userId}`);
   } catch (error) {
