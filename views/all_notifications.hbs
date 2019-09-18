@@ -1,0 +1,9 @@
+<h1>My Notifications</h1>
+{{#if notifications}}
+    {{#each notifications}}
+    <p>La banda {{sender_band.bandname}} {{message}}</p>
+    <a href="/notifications/{{_id}}/visited">Marcar como vista</a>
+    {{/each}}
+{{else}}
+<p>{{noNotification}}</p>
+{{/if}}

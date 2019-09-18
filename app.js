@@ -24,6 +24,7 @@ const messageRouter = require("./routes/message");
 const eventsRouter = require("./routes/events");
 const searchRouter = require("./routes/search");
 const chatRouter = require("./routes/chat");
+const notificationsRouter = require("./routes/notifications");
 
 const app = express();
 
@@ -80,6 +81,7 @@ app.use("/messages", messageRouter);
 app.use("/events", eventsRouter);
 app.use("/search", searchRouter);
 app.use("/chat", chatRouter);
+app.use("/notifications", notificationsRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

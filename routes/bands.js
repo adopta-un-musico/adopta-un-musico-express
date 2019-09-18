@@ -2,6 +2,7 @@ const express = require("express");
 const Band = require("../models/Band");
 const User = require("../models/User");
 const Events = require("../models/Events");
+const Notification = require("../models/Notifications");
 
 const router = express.Router();
 
@@ -166,6 +167,11 @@ router.get("/decline/:userId/:bandId/user", async (req, res, next) => {
       const band = await Band.findByIdAndUpdate(bandId, {
         $pull: { petitions: userId }
       });
+      const notifications = await Notification.create({
+        receiver: userId,
+        sender_band: bandId,
+        message: "ha rechazado tu petición",
+      })
       req.flash("info", "Usuario rechazado");
       res.redirect(`/bandas/all`);
     } catch (error) {
@@ -181,6 +187,11 @@ router.get("/accept/:userId/:bandId/user", async (req, res, next) => {
       $push: { members: userId }
     });
     const pull = await Band.findByIdAndUpdate(bandId, { $pull:{petitions: userId }});
+    const notifications = await Notification.create({
+      receiver: userId,
+      sender_band: bandId,
+      message: "ha aceptado tu petición",
+    });
     req.flash("info", "Usuario Aceptado");
     res.redirect(`/bandas/all`);
   } catch (error) {
