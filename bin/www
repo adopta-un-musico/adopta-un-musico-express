@@ -86,18 +86,24 @@ function onListening() {
 }
 
 const socket = require("socket.io");
+const Chat = require("../models/Chat_model");
 
 const io = socket(server);
 io.on("connection", socket => {
   const user = "";
+  const send = true;
   console.log("conectado", socket.id);
-
+  console.log(io.engine.clientsCount);
   socket.on("room", e => {
     socket.join(e.sala);
+    const chat = Chat.find({room: e.sala}).then( function (docs) {
+      io.sockets.in(e.sala).emit("all messages", docs);
+    });
     console.log("te has unido a la sala: " + e.sala);
   });
 
   socket.on("chat message", msg => {
+    const chat = Chat.create({username: msg.username, message: msg.message, room: msg.sala})
     io.sockets.in(msg.sala).emit("chat message", msg);
     const user = msg.username;
   });

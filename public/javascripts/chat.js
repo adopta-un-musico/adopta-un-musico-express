@@ -37,4 +37,9 @@ $(function() {
   socket.on("userstopTyping", () => {
     userTyping.innerText = "";
   });
+  socket.on("all messages", (data) =>{
+      $.each(data, function () {
+        $("#messages").append($("<p>").text(this.username + ": " + this.message));
+      });
+  });
 });
