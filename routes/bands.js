@@ -47,7 +47,6 @@ router.get('/profile/:bandId', async (req, res, next) => {
 
   try {
     const band = await Band.findById(bandId).populate('members');
-    console.log('wolalaaa', band);
     if (band !== null) {
       const isMe = req.session.currentUser._id === band.manager.toString();
       // Comprobamos si el usuario ya es miembro de la banda.

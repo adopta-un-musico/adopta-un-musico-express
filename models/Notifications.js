@@ -12,8 +12,8 @@ const notificationSchema = new Schema(
       type: String,
     },
     sender_band: {
-        type: Schema.Types.ObjectId,
-        ref: 'Band',
+      type: Schema.Types.ObjectId,
+      ref: 'Band',
     },
     visited: { type: Number, default: 0 },
   },

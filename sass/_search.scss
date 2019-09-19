@@ -1,36 +1,34 @@
 app-search {
-    nav{
-        width:100%;
-        height:60px;
-        font-family:sans-serif;
-        background:#7d3c98;
-        border-bottom:4px solid rgba(0,0,0,0.1);
-        color:#fff;
-    }
-    
-    .cont{
-        height:100%;
-        padding-top:0px;
-        float:right;
+  nav {
+    width: 100%;
+    height: 60px;
+    font-family: sans-serif;
+    background: #7d3c98;
+    border-bottom: 4px solid rgba(0, 0, 0, 0.1);
+    color: #fff;
+  }
 
-        label{
-            font-size:12.9px;
-        }
+  .cont {
+    height: 100%;
+    padding-top: 0px;
+    float: right;
+
+    label {
+      font-size: 12.9px;
     }
- 
-    input[type="search"]{
-        width:170px;
-        margin:10px;
-        padding:10px 16px;
-        border-radius:32px;
-        outline:none;
-        border:2px solid #8e44ad;
-        transition:all 0.5s;
-    }
-    input[type="search"]:focus{
-        background:#fff;
-        width:300px;
-    }
+  }
+
+  input[type='search'] {
+    width: 170px;
+    margin: 10px;
+    padding: 10px 16px;
+    border-radius: 32px;
+    outline: none;
+    border: 2px solid #8e44ad;
+    transition: all 0.5s;
+  }
+  input[type='search']:focus {
+    background: #fff;
+    width: 300px;
+  }
 }
-
-
