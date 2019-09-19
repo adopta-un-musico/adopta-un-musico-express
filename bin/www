@@ -4,16 +4,16 @@
  * Module dependencies.
  */
 
-var app = require("../app");
-var debug = require("debug")("project:server");
-var http = require("http");
+var app = require('../app');
+var debug = require('debug')('project:server');
+var http = require('http');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || "3000");
-app.set("port", port);
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
 
 /**
  * Create HTTP server.
@@ -26,8 +26,8 @@ var server = http.createServer(app);
  */
 
 server.listen(port);
-server.on("error", onError);
-server.on("listening", onListening);
+server.on('error', onError);
+server.on('listening', onListening);
 
 /**
  * Normalize a port into a number, string, or false.
@@ -54,20 +54,20 @@ function normalizePort(val) {
  */
 
 function onError(error) {
-  if (error.syscall !== "listen") {
+  if (error.syscall !== 'listen') {
     throw error;
   }
 
-  var bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
+  var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
-    case "EACCES":
-      console.error(bind + " requires elevated privileges");
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
       process.exit(1);
       break;
-    case "EADDRINUSE":
-      console.error(bind + " is already in use");
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
       process.exit(1);
       break;
     default:
@@ -81,41 +81,41 @@ function onError(error) {
 
 function onListening() {
   const addr = server.address();
-  const bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
-  debug("Listening on " + bind);
+  const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+  debug('Listening on ' + bind);
 }
 
-const socket = require("socket.io");
-const Chat = require("../models/Chat_model");
+const socket = require('socket.io');
+const Chat = require('../models/Chat_model');
 
 const io = socket(server);
-io.on("connection", socket => {
-  const user = "";
+io.on('connection', (socket) => {
+  const user = '';
   const send = true;
-  console.log("conectado", socket.id);
+  console.log('conectado', socket.id);
   console.log(io.engine.clientsCount);
-  socket.on("room", e => {
+  socket.on('room', (e) => {
     socket.join(e.sala);
-    const chat = Chat.find({room: e.sala}).then( function (docs) {
-      io.sockets.in(e.sala).emit("all messages", docs);
+    const chat = Chat.find({ room: e.sala }).then(function(docs) {
+      io.sockets.in(e.sala).emit('all messages', docs);
     });
-    console.log("te has unido a la sala: " + e.sala);
+    console.log('te has unido a la sala: ' + e.sala);
   });
 
-  socket.on("chat message", msg => {
-    const chat = Chat.create({username: msg.username, message: msg.message, room: msg.sala})
-    io.sockets.in(msg.sala).emit("chat message", msg);
+  socket.on('chat message', (msg) => {
+    const chat = Chat.create({ username: msg.username, message: msg.message, room: msg.sala });
+    io.sockets.in(msg.sala).emit('chat message', msg);
     const user = msg.username;
   });
 
-  socket.on("typing", data => {
+  socket.on('typing', (data) => {
     console.log(data.username);
     socket.broadcast
       .to(data.sala)
-      .emit("isTyping", { username: data.username, message: data.message });
+      .emit('isTyping', { username: data.username, message: data.message });
   });
 
-  socket.on("stopTyping", data => {
-    socket.broadcast.to(data.sala).emit("userstopTyping");
+  socket.on('stopTyping', (data) => {
+    socket.broadcast.to(data.sala).emit('userstopTyping');
   });
 });
