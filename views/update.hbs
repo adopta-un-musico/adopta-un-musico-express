@@ -1,15 +1,16 @@
 <h1>Actualizar datos</h1>
 
 <form action="/profile/{{user._id}}" method="POST">
- EMAIL:<input type="email" name="email" id="email" value="{{user.email}}" />
- Nickname:<input type="text" name="nickname" id="nickname" value="{{user.nickname}}" />
-Musical Genres: <select name="musicalGenres" value="{{user.musicalGenres}}">
-      <option value="Pop">Pop</option>
-      <option value="Rock">Rock</option>
-    </select>
-Instruments: <select name="instruments" value="{{user.instruments}}">
-      <option value="Flauta">Flauta</option>
-      <option value="Guitarra">Guitarra</option>
-    </select>
+  EMAIL:<input type="email" name="email" id="email" value="{{user.email}}" />
+  Nickname:<input type="text" name="nickname" id="nickname" value="{{user.nickname}}" />
+  Musical Genres: <select name="musicalGenres" value="{{user.musicalGenres}}">
+    <option value="Pop">Pop</option>
+    <option value="Rock">Rock</option>
+  </select>
+  Instruments: <select name="instruments" value="{{user.instruments}}">
+    <option value="Flauta">Flauta</option>
+    <option value="Guitarra">Guitarra</option>
+  </select>
   <input type="submit" value="Actualizar Datos" />
 </form>
+{{> backButton}}
