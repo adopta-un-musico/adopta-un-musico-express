@@ -4,6 +4,9 @@
 <p>Current user:</p>
 <p id="username">{{currentUser}}</p>
 <div id="messages">
+  {{#each messages}}
+      <p>{{username}}: {{message}}</p>
+  {{/each}}
 </div>
 <p id="typingu"></p>
 <form>
