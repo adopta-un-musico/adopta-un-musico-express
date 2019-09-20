@@ -1,8 +1,7 @@
 {{#if ifBandMember}}
 <h1>Chat de la banda: </h1>
-<p id="band">{{band.bandname}}</p>
-<p>Current user:</p>
-<p id="username">{{currentUser}}</p>
+<p id="band" style="visibility: hidden">{{band.bandname}}</p>
+<p id="username" style="visibility: hidden">{{currentUser}}</p>
 <div id="messages">
   {{#each messages}}
       <p>{{username}}: {{message}}</p>
