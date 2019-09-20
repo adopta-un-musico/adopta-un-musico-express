@@ -10,6 +10,7 @@ const UserSchema = new Schema(
     instruments: { type: Array },
     location: { type: String },
     nickname:  { type: String },
+    image: {type: String},
   },
   {
     timestamps: {
