@@ -4,6 +4,7 @@ const User = require('../models/User');
 const Band = require('../models/Band');
 const Events = require('../models/Events');
 const Notifications = require('../models/Notifications');
+const formidable = require('formidable');
 
 const router = express.Router();
 
@@ -43,6 +44,7 @@ router.get('/update/:userId', async (req, res, next) => {
 
 router.post('/:userId', async (req, res, next) => {
   const { userId } = req.params;
+
   const {
     email,
     nickname,
@@ -51,6 +53,14 @@ router.post('/:userId', async (req, res, next) => {
   } = req.body;
   try {
     // eslint-disable-next-line no-unused-vars
+    const form = new formidable.IncomingForm();
+    form.parse(req);
+    form.on('fileBegin', function (name, file){
+      file.path = __dirname + '/images/' + file.name;
+    });
+   const direction =  form.on('file', function (name, file){
+      console.log('Uploaded ' + file.name);
+    });
     const user = await User.findByIdAndUpdate(userId, {
       email,
       nickname,
