@@ -9,6 +9,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
 const hbs = require('hbs');
+const formidable = require('formidable'),
 const { notifications } = require('./middlewares');
 
 require('dotenv').config();
