@@ -4,18 +4,25 @@ const { Schema } = mongoose;
 
 const eventsSchema = new Schema(
   {
-    event_manager:{
+    event_manager: {
       type: Schema.Types.ObjectId,
       ref: 'Band',
     },
     event_name: String,
-    location: String,
-    recomendations:[{
+    location: {
+      type: {
+        type: String,
+      },
+      coordinates: [
+        Number,
+      ],
+    },
+    recomendations: [{
       type: Schema.Types.ObjectId,
       ref: 'User',
     }],
     date: Date,
-    asistentes:[{
+    asistentes: [{
       type: Schema.Types.ObjectId,
       ref: 'User',
     }],
