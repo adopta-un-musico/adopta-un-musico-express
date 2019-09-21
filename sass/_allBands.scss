@@ -1,16 +1,24 @@
-app-band {
-  .band {
-    text-align: left;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
-
-    img {
-      width: 100%;
-    }
-
-    button {
-      width: 100%;
-    }
+app-band .band{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  color: black;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  .band-section{
+    margin-right: 0;
+    margin-left: 0;
+    display: flex;
+    flex-wrap: wrap;
   }
+  .image-section{
+    background-color: gray;
+  }
+
 }
