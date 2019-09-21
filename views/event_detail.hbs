@@ -4,6 +4,7 @@
 <p>Date: {{eventToView.date}}</p>
 <p>Banda: {{eventToView.event_manager.bandname}} </p>
 <p>Total Recommendations: {{result}}</p>
+{{> map}}
 {{#if isMe}}
 <button><a href="/events/delete/{{eventToView._id}}">Eliminar Evento</a></button>
 <button><a href="/events/update/{{eventToView._id}}">Actualizar Evento</a></button>

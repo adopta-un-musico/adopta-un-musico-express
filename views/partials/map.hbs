@@ -1,27 +1,28 @@
 <div id="map"></div>
 <script>
   function initMap() {
-    var lat = event.lat;
-    var lng = event.lng;
-    var center = { lat: lat, lng: lng };
-    var map = new google.maps.Map(document.getElementById('map'), {
+    const lat = 41.3977381;
+    const lng = 2.190471916;
+    const center = { lat: lat, lng: lng };
+    const map = new google.maps.Map(document.getElementById('map'), {
       zoom: 8,
       center: center,
       scrollwheel: false
     });
-    var contentString = `
-        <strong><%= event.name %><br />
-        <%= event.location %></strong>
-        <p><%= campground.description %></p>
+    // la siguiente variable debereía mostrar la información del evento en el pin. 
+    // No lo hace, investigar bien
+    const contentString = `
+        <strong>{{{event.name}}}<br />
+        {{{event.location}}}</strong>
       `
-    var infowindow = new google.maps.InfoWindow({
+    const infowindow = new google.maps.InfoWindow({
       content: contentString
     });
-    var marker = new google.maps.Marker({
+    const marker = new google.maps.Marker({
       position: center,
       map: map
     });
-    marker.addListener('click', function () {
+    marker.addListener('click', () => {
       infowindow.open(map, marker);
     });
   }
