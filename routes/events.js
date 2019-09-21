@@ -1,9 +1,19 @@
 /* eslint-disable no-underscore-dangle */
 const express = require('express');
+const NodeGeocoder = require('node-geocoder');
 const Events = require('../models/Events');
 const User = require('../models/User');
 
 const router = express.Router();
+
+const options = {
+  provider: 'google',
+  httpAdapter: 'https',
+  apiKey: process.env.GEOCODER_API_KEY,
+  formatter: null,
+};
+
+const geocoder = NodeGeocoder(options);
 
 router.get('/all', async (req, res, next) => {
   try {
