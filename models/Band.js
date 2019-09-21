@@ -43,6 +43,8 @@ const bandSchema = new Schema(
   },
 );
 
+bandSchema.index({ location: '2dsphere' });
+
 const Band = mongoose.model('Band', bandSchema);
 
 module.exports = Band;
