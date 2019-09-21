@@ -1,8 +1,8 @@
 <div id="map"></div>
 <script>
   function initMap() {
-    var lat = campground.lat;
-    var lng = campground.lng;
+    var lat = event.lat;
+    var lng = event.lng;
     var center = { lat: lat, lng: lng };
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 8,
@@ -10,8 +10,8 @@
       scrollwheel: false
     });
     var contentString = `
-        <strong><%= campground.name %><br />
-        <%= campground.location %></strong>
+        <strong><%= event.name %><br />
+        <%= event.location %></strong>
         <p><%= campground.description %></p>
       `
     var infowindow = new google.maps.InfoWindow({

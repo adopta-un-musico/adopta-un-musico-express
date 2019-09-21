@@ -69,13 +69,24 @@ router.get('/new/:bandId', async (req, res, next) => {
 
 router.post('/:bandId/add', async (req, res, next) => {
   const { bandId } = req.params;
-  const { name, date, location } = req.body;
+  const { name, date } = req.body;
   try {
-    const event = await Events.create({
-      event_manager: bandId,
-      event_name: name,
-      location: location,
-      date: date,
+    geocoder.geocode(req.body.location, async (err, data) => {
+      if (err || !data.length) {
+        req.flash('error', 'La dirección no es válida');
+        res.redirect('back');
+      }
+      const lat = data[0].latitude;
+      const lng = data[0].longitude;
+      const location = data[0].formattedAddress;
+      const event = await Events.create({
+        event_manager: bandId,
+        event_name: name,
+        location,
+        lat,
+        lng,
+        date,
+      });
     });
     req.flash('info', 'Evento creado correctamente');
     res.redirect(`/bandas/profile/${bandId}`);
@@ -83,6 +94,7 @@ router.post('/:bandId/add', async (req, res, next) => {
     next(error);
   }
 });
+
 router.get('/delete/:eventId', async (req, res, next) => {
   const { eventId } = req.params;
 
