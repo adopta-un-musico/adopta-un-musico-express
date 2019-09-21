@@ -74,3 +74,10 @@ app-home .wrapper {
   background-color: tomato;
   padding: 10px;
 }
+app-home .header {
+  display: flex;
+}
+app-home .p-align {
+  margin: 0 auto;
+  flex-direction: row;
+}
