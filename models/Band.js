@@ -19,21 +19,14 @@ const bandSchema = new Schema(
         ref: 'User',
       },
     ],
-    petitions: [
+    petitions:[
       {
         type: Schema.Types.ObjectId,
         ref: 'User',
       },
-    ],
-    requests: { type: String, default: 'Abiertas' },
-    location: {
-      type: {
-        type: String,
-      },
-      coordinates: [
-        Number,
-      ],
-    },
+  ],
+    requests: { type: String, default: 'Abiertas'},
+    location: String,
   },
   {
     timestamps: {
