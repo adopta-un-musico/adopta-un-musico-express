@@ -10,12 +10,14 @@ const eventsSchema = new Schema(
     },
     event_name: String,
     location: String,
-    recomendations:[{
+    lat: Number,
+    lgt: Number,
+    recomendations: [{
       type: Schema.Types.ObjectId,
       ref: 'User',
     }],
     date: Date,
-    asistentes:[{
+    asistentes: [{
       type: Schema.Types.ObjectId,
       ref: 'User',
     }],
