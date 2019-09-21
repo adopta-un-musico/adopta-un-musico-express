@@ -4,8 +4,11 @@
   <div class="container">
     <app-search>
       <div class="content">
-        <label>Buscar</label>
-        <input type="search" placeholder="Search ...">
+        <form class="box" id="form" action="/search" method="POST">
+          <label for="search">Buscar</label>
+          <input type="search" id="search" name="search" placeholder="Search ...">
+          <button type="submit">GO</button>
+        </form>
       </div>
     </app-search>
   </div>

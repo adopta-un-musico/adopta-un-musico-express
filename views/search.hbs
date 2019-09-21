@@ -3,9 +3,21 @@
     <app-search>
       <h2>adoptaunmusico.com</h2>
       <div class="content">
-        <label>Buscar</label>
-        <input type="search" placeholder="Search ...">
+        <form class="box" id="form" action="/search" method="POST">
+          <label for="search">Buscar</label>
+          <input type="search" id="search" name="search" placeholder="Search ...">
+        </form>
       </div>
     </app-search>
   </div>
 </app-search>
+
+
+<div class="wrap">
+  <div class="card">
+    <h1>Search results</h1>
+    <h2>{{user.nickname}}nickname</h2>
+    <h2>{{ user.email }}email@gmail.com</h2>
+    {{> backButton}}
+  </div>
+</div>
