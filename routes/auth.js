@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const express = require('express');
 const bcrypt = require('bcryptjs');
 
@@ -15,7 +16,7 @@ router.post('/newUser', (req, res, next) => {
   const { email, password, nickname } = req.body;
   if (email !== '' && password !== '') {
     User.findOne({ email })
-      .then(user => {
+      .then((user) => {
         if (user) {
           req.flash('error', 'El usuario que has introducido ya existe');
           res.redirect('/signup');
@@ -23,17 +24,17 @@ router.post('/newUser', (req, res, next) => {
           const salt = bcrypt.genSaltSync(bcryptSalt);
           const hashedPassword = bcrypt.hashSync(password, salt);
           User.create({ email, hashedPassword, nickname })
-            .then(user => {
+            .then((user) => {
               req.session.currentUser = user;
               req.flash('info', 'Usuario creado correctamente');
               res.redirect('/home');
             })
-            .catch(error => {
+            .catch((error) => {
               throw error;
             });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         req.flash('error', 'error vuelve a intentarlo');
         res.redirect('/signup');
       });
@@ -51,7 +52,7 @@ router.post('/login', (req, res, next) => {
   const { email, password } = req.body;
   if (email !== '' && password !== '') {
     User.findOne({ email })
-      .then(user => {
+      .then((user) => {
         if (user) {
           if (bcrypt.compareSync(password, user.hashedPassword)) {
             req.session.currentUser = user;
@@ -64,7 +65,7 @@ router.post('/login', (req, res, next) => {
           res.redirect('/signup');
         }
       })
-      .catch(error => {
+      .catch((error) => {
         req.flash('error', 'Vuelve a intentarlo');
         res.redirect('/login');
       });
@@ -75,7 +76,7 @@ router.post('/login', (req, res, next) => {
 });
 
 router.get('/logout', (req, res, next) => {
-  req.session.destroy(err => {
+  req.session.destroy((err) => {
     if (err) {
       next(err);
     }

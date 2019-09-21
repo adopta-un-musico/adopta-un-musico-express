@@ -1,0 +1,18 @@
+{{#if ifBandMember}}
+<h1>Chat de la banda </h1>
+<p id="band" style="visibility: hidden">{{band.bandname}}</p>
+<p id="username" style="visibility: hidden">{{currentUser}}</p>
+<div id="messages">
+  {{#each messages}}
+      <p>{{username}}: {{message}} {{#if ifUser }} - <a href="/chat/delete/{{_id}}">Delete</a> {{/if}}</p>
+  {{/each}}
+</div>
+<p id="typingu"></p>
+<form>
+  <input id="text" autocomplete="off" /><button>Enviar mensaje</button>
+  <script src="/javascripts/chat.js" charset="utf-8"></script>
+</form>
+{{else}}
+<p>Solo los miembros de la banda pueden acceder al chat! Go back!</p>
+{{/if}}
+{{> backButton}}

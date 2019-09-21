@@ -2,9 +2,9 @@ const express = require('express');
 
 const router = express.Router();
 
-/* GET home page. */
+/* GET search page. */
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'adoptaunmusico' });
+  res.render('search', { title: 'Search' });
 });
 
 module.exports = router;

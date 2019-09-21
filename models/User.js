@@ -10,13 +10,14 @@ const UserSchema = new Schema(
     instruments: { type: Array },
     location: { type: String },
     nickname:  { type: String },
+    image: {type: String},
   },
   {
     timestamps: {
       createdAt: 'created_at',
-      updatedAt: 'updated_at'
-    }
-  }
+      updatedAt: 'updated_at',
+    },
+  },
 );
 
 const User = mongoose.model('User', UserSchema);

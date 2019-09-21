@@ -1,0 +1,50 @@
+.words-carrousel {
+  font: normal 35px/50px Montserrat, sans-serif;
+  color: #999;
+  margin-left: 0.3em;
+}
+
+.words-carrousel p {
+  height: 50px;
+  // float: left;
+}
+
+.words-carrousel b {
+  float: left;
+  overflow: hidden;
+  position: relative;
+  height: 50px;
+  top: 40px;
+}
+
+.words-carrousel .sentences {
+  display: inline-block;
+  color: #34495e;
+  position: relative;
+  white-space: nowrap;
+  top: 0;
+  left: 0;
+
+  /*animation*/
+  animation: move 8s;
+  animation-iteration-count: infinite;
+  animation-delay: 1s;
+}
+
+@keyframes move {
+  0% {
+    top: 0px;
+  }
+  20% {
+    top: -50px;
+  }
+  40% {
+    top: -100px;
+  }
+  60% {
+    top: -150px;
+  }
+  80% {
+    top: -200px;
+  }
+}

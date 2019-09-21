@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
@@ -6,29 +6,36 @@ const bandSchema = new Schema(
   {
     manager: {
       type: Schema.Types.ObjectId,
-      ref: "User",
-      required: true
+      ref: 'User',
+      required: true,
     },
     bandname: String,
     musicalGenres: {
-      type: Array
+      type: Array,
     },
     members: [
       {
         type: Schema.Types.ObjectId,
-        ref: "User"
-      }
+        ref: 'User',
+      },
     ],
-    location: String
+    petitions:[
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+      },
+  ],
+    requests: { type: String, default: 'Abiertas'},
+    location: String,
   },
   {
     timestamps: {
-      createdAt: "created_at",
-      updatedAt: "updated_at"
-    }
-  }
+      createdAt: 'created_at',
+      updatedAt: 'updated_at',
+    },
+  },
 );
 
-const Band = mongoose.model("Band", bandSchema);
+const Band = mongoose.model('Band', bandSchema);
 
 module.exports = Band;

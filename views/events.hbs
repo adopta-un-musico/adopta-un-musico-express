@@ -1,0 +1,18 @@
+<h1>Eventos</h1>
+{{#if iWillAssist}}
+
+{{#each iWillAssist}}
+<p><i>{{#each  }}{{nickname}} asistirá a este evento:</i></p>
+<p>Nombre:{{event_name}}</p>
+<p>Lugar: {{location}}</p>
+<p>Fecha: {{date}}</p>
+<p>Banda: {{event_manager.bandname}}</p>
+<p>Estilo de música de la banda: {{event_manager.musicalGenres}}</p>
+<button><a href="/events/detail/{{_id}}">Ver en detalle</a></button>
+
+{{/each}}
+{{else}}
+<p>El usuario {{username.nickname}} no ha marcado que asistirá a ningún evento, míra los <a href="/events/all">eventos
+    disponibles aquí.</a></p>
+{{/if}}
+{{> backButton}}

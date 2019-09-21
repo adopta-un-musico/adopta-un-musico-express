@@ -58,9 +58,7 @@ function onError(error) {
     throw error;
   }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -82,9 +80,37 @@ function onError(error) {
  */
 
 function onListening() {
-  var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
+  const addr = server.address();
+  const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+const socket = require('socket.io');
+const Chat = require('../models/Chat_model');
+
+const io = socket(server);
+io.on('connection', (socket) => {
+  console.log('conectado', socket.id);
+  console.log(io.engine.clientsCount);
+  socket.on('room', (e) => {
+    socket.join(e.sala);
+    console.log('te has unido a la sala: ' + e.sala);
+  });
+
+  socket.on('chat message', (msg) => {
+    const chat = Chat.create({ username: msg.username, message: msg.message, room: msg.sala });
+    io.sockets.in(msg.sala).emit('chat message', msg);
+    const user = msg.username;
+  });
+
+  socket.on('typing', (data) => {
+    console.log(data.username);
+    socket.broadcast
+      .to(data.sala)
+      .emit('isTyping', { username: data.username, message: data.message });
+  });
+
+  socket.on('stopTyping', (data) => {
+    socket.broadcast.to(data.sala).emit('userstopTyping');
+  });
+});

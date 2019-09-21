@@ -1,5 +1,42 @@
-<h1>Hello {{user.nickname}} !</h1>
-<li><a href="/profile/{{currentUser._id}}">Ver Perfil</a></li>
-<li><a href="/bandas/{{currentUser._id}}">Crear Banda</a></li>
-<li><a href="/bandas/all">Ver todas las Bandas</a></li>
-<li><a href="/logout">Cerrar Sesión</a></li>
+<app-home>
+  <div class="wrapper">
+    <header class="header">
+      <a href="#" class="menu_on">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+      <p class="p-align">Hola {{user.nickname}}!</p>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="/profile/{{currentUser._id}}">Ver Perfil</a></li>
+        <li><a href="/bandas/{{currentUser._id}}">Crear Banda</a></li>
+        <li><a href="/bandas/all">Ver todas las Bandas</a></li>
+        <li><a href="/events/all">Ver todos los Eventos</a></li>
+        <li><a href="/logout">Cerrar Sesión</a></li>
+      </ul>
+    </nav>
+  </div>
+</app-home>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('.menu_on').click(function () {
+      $('.menu_on').toggleClass('visible_span');
+      $('nav').toggleClass('visible_menu');
+    })
+  });
+</script>
+<app-search>
+  <div class="container">
+    <app-search>
+      <div class="content">
+        <label>Buscar</label>
+        <input type="search" placeholder="Search ...">
+      </div>
+    </app-search>
+  </div>
+</app-search>
+
+<div>
+</div>
