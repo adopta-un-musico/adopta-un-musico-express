@@ -24,6 +24,13 @@
     {{/if}}
   </div>
   {{{body}}}
+  <script>
+    $(document).ready(function () {
+    $('.close').click(function () {
+       $('.notifications').css({'visibility': 'hidden'});
+    })
+  });
+  </script>
 </body>
 
 </html>
