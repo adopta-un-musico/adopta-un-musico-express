@@ -1,25 +1,27 @@
 <app-events>
-    <h1>Eventos</h1>
-    {{#if events}}
-        {{#each events}}
-                <div class="events">
-                    <div class="events-section">
-                            <div class="image-section">
-                                    <p>image</p>
-                            </div>
-                            <div class="event-info">
-                                <p>Nombre: {{event_name}}</p>
-                                <p>Ubicación. {{location}}</p>
-                                <p>Fecha: {{date}}</p>
-                                <p>Banda: {{event_manager.bandname}}</p>
-                                <p>Generos musicales de la banda: {{event_manager.musicalGenres}}</p>
-                                <button><a href="/events/detail/{{_id}}">Ver en detalle</a></button>
-                             </div>
+    <div class="wrap">
+        <h1>Eventos</h1>
+         {{#if events}}
+            {{#each events}}
+                    <div class="events">
+                        <div class="events-section">
+                                <div class="image-section">
+                                        <p>image</p>
+                                </div>
+                                <div class="event-info">
+                                    <p>Nombre: {{event_name}}</p>
+                                    <p>Ubicación. {{location}}</p>
+                                    <p>Fecha: {{date}}</p>
+                                    <p>Banda: {{event_manager.bandname}}</p>
+                                    <p>Generos musicales de la banda: {{event_manager.musicalGenres}}</p>
+                                    <button><a href="/events/detail/{{_id}}">Ver en detalle</a></button>
+                                 </div>
+                        </div>
                     </div>
-                </div>
-        {{/each}}
-        {{else}}
-            <p>Todavía no hay ningun evento</p>
+            {{/each}}
+            {{else}}
+                <p>Todavía no hay ningun evento</p>
         {{/if}}
+    </div>
         {{> backButton}}
 </app-events>
