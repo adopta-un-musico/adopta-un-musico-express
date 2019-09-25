@@ -1,8 +1,12 @@
 {{> menu}}
 <h1>Eventos</h1>
+ <div class="wrap">
+            <div class="card">
+            </div>
+</div>
 {{#if iWillAssist}}
 {{#each iWillAssist}}
-<p><i>{{nickname}} asistirá a este evento:</i></p>
+<p><i>{{../username.nickname}} asistirá a este evento:</i></p>
 <p>Nombre:{{event_name}}</p>
 <p>Lugar: {{location}}</p>
 <p>Fecha: {{date}}</p>
