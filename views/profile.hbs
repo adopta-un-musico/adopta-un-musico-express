@@ -4,9 +4,9 @@
     <h1>User Profile Card</h1>
     <img src="/images/mexican-music.jpeg" alt="mexican-music">
     <h2>{{user.nickname}}</h2>
-    <span>quiere unirse a una banda</span>
-    <button><a href="/notifications/{{user._id}}/all">Notificaciones {{#if notificationsCount}} ({{notificationsCount}})
-        {{/if}}</a></button>
+    {{#if isMe }}
+    <button><a href="/notifications/{{user._id}}/all">Notificaciones {{#if notificationsCount}} ({{notificationsCount}}){{/if}}</a></button>
+    {{/if}}
     <p class="title">{{ user.email }}</p>
     <p class="title"><span>Joined on</span> {{ user.created_at }}</p>
     {{> backButton}}
