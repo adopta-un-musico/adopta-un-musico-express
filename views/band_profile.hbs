@@ -26,21 +26,20 @@
           </div>
           <div class="dropdown">
                 {{#if isMe}}
-                    <button><a href="/bandas/{{band._id}}/update/">Actualizar Banda</a></button>
-                    <button><a href="/events/new/{{band._id}}/">Añadir Evento</a></button>
+                    <button class="button-profile"><a href="/bandas/{{band._id}}/update/">Actualizar Banda</a></button>
+                    <button class="button-profile"><a href="/events/new/{{band._id}}/">Añadir Evento</a></button>
                     <button class="danger"><a href="/bandas/{{band._id}}/delete">Eliminar Banda</a></button>
-                    <button><a href="/bandas/petitionc/{{band._id}}/check/">Revisar Peticiones</a></button>
+                    <button class="button-profile"><a href="/bandas/petitionc/{{band._id}}/check/">Revisar Peticiones</a></button>
                 {{/if}}
                 {{#if ifBand}}
-                    <div class="danger"></div>
-                    <button><a href="/chat/{{band.id}}/{{currentUser.nickname}}/{{band.bandname}}">Chat</a></button>
+                    <button class="button-profile"><a href="/chat/{{band.id}}/{{currentUser.nickname}}/{{band.bandname}}">Chat</a></button>
                     <button class="danger"><a href="/bandas/{{band._id}}/{{currentUser._id}}/leave" class="danger">Salir de la Banda</a></button>
                 {{else}}
                 {{#if ifPetition}}
-                    <button><a href="">Tu petición está siendo valorada por la banda.</a></button>
+                    <button class="button-profile"><a href="">Tu petición está siendo valorada por la banda.</a></button>
                 {{else}}
                 {{#if ifOpenRequest}}
-                    <button><a href="/bandas/petition/{{band._id}}/{{currentUser._id}}">Enviar peticion a la Banda</a></button>
+                    <button class="button-profile"><a href="/bandas/petition/{{band._id}}/{{currentUser._id}}">Enviar peticion a la Banda</a></button>
                 {{else}}
                     <p>Las peticiones están cerradas</p>
                 {{/if}}
