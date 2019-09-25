@@ -66,6 +66,7 @@
       </div>
     </div>
 <script>
+// ACTIONS
 $('.arrow-actions').click(function(){
         $('.dropdown-actions').css({
              "visibility": "visible",
@@ -84,6 +85,26 @@ $('.close-menu').click(function(){
         $(".close-menu").css({"visibility": "hidden"})
         $(".arrow-actions").css({"visibility": "visible"})
 });
+// EVENTS 
+$('.arrow-events').click(function(){
+        $('.dropdown-events').css({
+             "visibility": "visible",
+             "opacity": "1",
+             "display": "block", 
+        });
+        $(".close-menu-events").css({"visibility": "visible"})
+        $(".arrow-events").css({"visibility": "hidden"})
+});
+$('.close-menu-events').click(function(){
+        $('.dropdown-events').css({
+            "visibility": "hidden",
+             "opacity": "0",
+             "display": "none", 
+        });
+        $(".close-menu-events").css({"visibility": "hidden"})
+        $(".arrow-events").css({"visibility": "visible"})
+});
+
 </script>
   </div>
 </app-profile>
