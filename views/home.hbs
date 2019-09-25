@@ -3,7 +3,6 @@
   <div class="container">
     <app-search>
       <div class="content">
-        <label>Buscar</label>
         <input type="search" placeholder="Search ...">
       </div>
     </app-search>
@@ -29,8 +28,8 @@
         </div>
         {{/each}}
         {{else}}
-          <span>Ups!!! No hay bandas cerca de ti todavía o no has configurado tu localización, configúrala <a href="profile/update/{{user._id}}">ahora!</a></span>
+          <h3 style="text-align: center; margin-top: 40px;">Bandas cerca de ti</h3>
+          <span>Ups!!! No hay bandas cerca de ti todavía o no has configurado tu localización, configúrala <a href="profile/update/{{user._id}}" style="font-size: 14px">ahora!</a></span>
         {{/if}}
     </div>
-    {{> backButton}}
 </app-band>
