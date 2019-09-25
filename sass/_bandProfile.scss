@@ -49,15 +49,11 @@ app-profile {
     border: 1px solid rgba(0,0,0,.125);
     border-radius: .25rem;
     color: black;
-    height: 20%;
-    margin-bottom: 20px;
     h2{
         text-align: center
     }
   }
-  .user-actions{
-
-  }
+ 
   .button-profile{
     border: 1px solid transparent;
     padding: .375rem .75rem;
@@ -67,12 +63,12 @@ app-profile {
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     display: inline-block;
     font-weight: 400;
-    color:white;
+    color:black;
     background-color: tomato;
     border-color: tomato;
     width: 100%;
     a{
-      color: white;
+      color: black;
       font-size: 1rem;
     }
   }
@@ -85,14 +81,50 @@ app-profile {
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     display: inline-block;
     font-weight: 400;
-    color:white;
+    color:black;
     background-color: red;
     border-color: red;
     width: 100%;
     a{
-      color: white;
+      color: black;
       font-size: 1rem;
     }
+  }
+  .dropdown-actions{
+    flex-direction: column;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.5s ease;
+    margin-top: 1rem;
+    left: 0;
+    display: none;
+    padding: 14px;
+    margin-right: 2%;
+}
+.arrow-actions{
+   position: absolute;
+   width: 20px;
+   height: 20px;
+   right: 14%;
+   margin-top: -14%;
+   -webkit-transform: rotate(45deg);
+   border-left: none;
+   border-top: none;
+   border-right: 2px black solid;
+   border-bottom: 2px black solid;
+  }
+  .close-menu{
+    position: absolute;
+    padding: .75rem 1.25rem;
+    color: inherit;
+    line-height: 1;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+    background-color: transparent;
+    border: 0;
+    right: 8%;
+    margin-top: -18%;
+    width: 0;
   }
 
 }
