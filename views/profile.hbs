@@ -11,17 +11,29 @@
                     <button class="button-profile"><a href="/notifications/{{user._id}}/all">Notificaciones {{#if notificationsCount}} ({{notificationsCount}}){{/if}}</a></button>
                 {{/if}}
             </div>
+            <div class="action-profile">
+                <div class="user-actions">
+                    <h2>Actions</h2>
+                    <button type="button" class="close-menu" style="visibility: hidden">X</button>
+                </div>
+                    <div class="dropdown">
+                        {{#if isMe }}
+                             <button class="button-profile"><a href="/profile/update/{{user._id}}">Update profile</a></button>
+                             <button class="button-profile"><a href="/messages/{{user._id}}/all">Ver mensajes</a></button>
+                             <button class="button-profile"><a href="/events/{{user._id}}/recommendations">Ver Recomendaciones</a></button>
+                             <button class="button-profile"><a href="/events/{{user._id}}/event">Eventos que asistiré</a></button>
+                        {{else}}
+                             <button><a href="/events/{{user._id}}/recommendations">Ver Recomendaciones</a></button>
+                             <a href="/messages/send/{{user._id}}">Enviar mensaje</a>
+                        {{/if}}
+                    </div>
+            </div>
+            <div class="action-profile-bands">
+                <div class="user-bands">
+                    <h2>My Bands</h2>
+                </div>
+            </div>
             <div class="band">
-                {{#if isMe }}
-                    <button><a href="/profile/update/{{user._id}}">Update profile</a></button>
-                    <button><a href="/messages/{{user._id}}/all">Ver mensajes</a></button>
-                    <button><a href="/events/{{user._id}}/recommendations">Ver Recomendaciones</a></button>
-                    <button><a href="/events/{{user._id}}/event">Eventos que asistiré</a></button>
-
-                {{else}}
-                <button><a href="/events/{{user._id}}/recommendations">Ver Recomendaciones</a></button>
-                <a href="/messages/send/{{user._id}}">Enviar mensaje</a>
-                {{/if}}
                 <h2>My bands</h2>
                 {{#each band}}
                     <p>{{bandname}}</p>
@@ -30,4 +42,25 @@
                 {{/each}}
               </div>
         </div>
+<script>
+$('.action-profile').click(function(){
+                console.log("click");
+                $('.dropdown').css({
+                    "visibility": "visible",
+                    "opacity": "1",
+                    "display": "block", 
+                });
+            $(".close-menu").css({"visibility": "visible"})
+});
+    $('.close-menu').click(function () {
+        $('.dropdown').css({
+                 "visibility": "hidden",
+                 "opacity": "0",
+                 "display": "none", 
+        });
+        console.log("ok");
+        $('.close-menu').css({"visibility": "hidden"})
+    });
+
+</script>
 </app-userProfile>
