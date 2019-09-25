@@ -1,19 +1,20 @@
 {{> menu}}
 <h1>Eventos</h1>
- <div class="wrap">
+<app-events>
+    <div class="wrap">
             <div class="card">
+                {{#if iWillAssist}}
+                {{#each iWillAssist}}
+                    <p><i>{{../username.nickname}} asistirá a este evento:</i></p>
+                    <p>Nombre: {{event_name}}</p>
+                    <p>Lugar: {{location}}</p>
+                    <p>Fecha: {{date}}</p>
+                    <p>Banda: {{event_manager.bandname}}</p>
+                    <p>Estilo de música de la banda: {{event_manager.musicalGenres}}</p>
+                    <button class="button-event"><a href="/events/detail/{{_id}}">Ver en detalle</a></button>
+                {{/each}}
             </div>
-</div>
-{{#if iWillAssist}}
-{{#each iWillAssist}}
-<p><i>{{../username.nickname}} asistirá a este evento:</i></p>
-<p>Nombre:{{event_name}}</p>
-<p>Lugar: {{location}}</p>
-<p>Fecha: {{date}}</p>
-<p>Banda: {{event_manager.bandname}}</p>
-<p>Estilo de música de la banda: {{event_manager.musicalGenres}}</p>
-<button><a href="/events/detail/{{_id}}">Ver en detalle</a></button>
-{{/each}}
+    </div>
 {{else}}
     <app-noband>
               <div class="card" style="margin: 5%;">
@@ -23,3 +24,4 @@
               </div>
     </app-noband>
 {{/if}}
+</app-events>
