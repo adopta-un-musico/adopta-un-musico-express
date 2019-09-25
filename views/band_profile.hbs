@@ -47,6 +47,23 @@
           </div>
         </div>
     </div>
+    <div class="events-actions">
+          <h2>Next events</h2>
+      <div class="arrow-events"></div>
+      <div class="dropdown-events">
+          {{#if event}}
+          {{#each event}}
+            <h3>{{event_name}}</h3>
+            <p>Location: {{location}}</p>
+            <p>Date: {{date}}</p>
+            <button><a href="/events/detail/{{_id}}">Ver en detalle</a></button>
+          {{/each}}
+          {{else}}
+            <p>Esta banda todavía no tiene ningún evento.</p>
+          {{/if}}
+          {{/if}}
+      </div>
+    </div>
 <script>
 $('.arrow-actions').click(function(){
         $('.dropdown-actions').css({
@@ -67,19 +84,5 @@ $('.close-menu').click(function(){
         $(".arrow-actions").css({"visibility": "visible"})
 });
 </script>
-    </p>
-    {{#if event}}
-    <h1>Next Events:</h1>
-    {{#each event}}
-    <h3>{{event_name}}</h3>
-    <p>Location: {{location}}</p>
-    <p>Date: {{date}}</p>
-    <button><a href="/events/detail/{{_id}}">Ver en detalle</a></button>
-    {{/each}}
-    {{else}}
-    <h1>Next Events:</h1>
-    <p>Esta banda todavía no tiene ningún evento.</p>
-    {{/if}}
-  {{/if}}
   </div>
 </app-profile>
