@@ -1,4 +1,5 @@
 {{> menu}}
+<app-detailEvent>
 {{#if eventToView }}
 <h1>{{eventToView.event_name}}</h1>
 <p>Location: {{eventToView.location}}</p>
@@ -21,4 +22,4 @@
 {{else}}
 <p>Este evento aún no existe o ha sido eliminado</p>
 {{/if}}
-{{> backButton}}
+</app-detailEvent>
