@@ -50,7 +50,7 @@ router.post('/:userId', async (req, res, next) => {
     nickname,
     musicalGenres,
     instruments,
-    location,
+    loc,
   } = req.body;
   try {
     // eslint-disable-next-line no-unused-vars
@@ -67,7 +67,7 @@ router.post('/:userId', async (req, res, next) => {
       nickname,
       musicalGenres,
       instruments,
-      location,
+      loc,
     });
     req.flash('info', 'Perfil Actualizado correctamente');
     res.redirect(`/profile/${userId}`);

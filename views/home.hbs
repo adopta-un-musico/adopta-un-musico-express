@@ -9,6 +9,28 @@
     </app-search>
   </div>
 </app-search>
-
-<div>
-</div>
+<app-band>
+    <div class="wrap">
+        {{#if bands}}
+        <h3>Bandas cerca de ti</h3>
+        {{#each bands}}
+        <div class="band">
+            <div class="band-section">
+                <div class="image-section">
+                    <p>Image</p>
+                </div>
+                <div class="band-info">
+                    <h2>{{bandname}}</h2>
+                    <p>Live in {{location}}</p>
+                    <p>Style: {{musicalGenres}}</p>
+                    <button class="button"><a href="/bandas/profile/{{_id}}">Band Profile</a></button>
+                </div> 
+            </div>
+        </div>
+        {{/each}}
+        {{else}}
+          <span>Ups!!! No hay bandas cerca de ti todavía o no has configurado tu localización, configúrala <a href="profile/update/{{user._id}}">ahora!</a></span>
+        {{/if}}
+    </div>
+    {{> backButton}}
+</app-band>
