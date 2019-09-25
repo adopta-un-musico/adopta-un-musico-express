@@ -1,0 +1,98 @@
+app-userProfile{
+    .card{
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0,0,0,.125);
+        border-radius: .25rem;
+        color: black;
+        padding: 14px;
+        margin-bottom: 20px;
+        margin-top: 26%;
+        
+    }
+    .profile-img{
+        height: 100px;
+        width: 100px;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        border-radius: 50%;
+        background-size: 100% auto;
+        position: absolute;
+        margin-top: 4%;
+        top: 8%;
+    }
+    .button-profile{
+        border: 1px solid transparent;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: .25rem;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        display: inline-block;
+        font-weight: 400;
+        color:white;
+        background-color: tomato;
+        border-color: tomato;
+       width: 100%;
+        a{
+          color: white;
+          font-size: 1rem;
+        }
+      }
+    .action-profile{
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0,0,0,.125);
+        border-radius: .25rem;
+        color: black;
+        padding: 14px;
+        margin-bottom: 20px;
+        h2{
+            text-align: center
+        }
+    }
+    .dropdown{
+        flex-direction: column;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.5s ease;
+        margin-top: 1rem;
+        left: 0;
+        display: none;
+    }
+    .close-menu{
+        position: absolute;
+        padding: .75rem 1.25rem;
+        color: inherit;
+        line-height: 1;
+        text-shadow: 0 1px 0 #fff;
+        opacity: .5;
+        background-color: transparent;
+        border: 0;
+        margin: 0 auto;
+        width: 0%;
+        margin-top: -15%;
+
+    }
+    .action-profile-bands{
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0,0,0,.125);
+        border-radius: .25rem;
+        color: black;
+        padding: 14px;
+        margin-bottom: 20px;
+        h2{
+            text-align: center
+        }
+    }
+}
