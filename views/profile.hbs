@@ -1,32 +1,33 @@
 {{> menu}}
-<div class="wrap">
-  <div class="card">
-    <img class="profile-img" src="/images/mexican-music.jpeg" alt="mexican-music">
-    <h2>{{user.nickname}}</h2>
-    {{#if isMe }}
-    <button><a href="/notifications/{{user._id}}/all">Notificaciones {{#if notificationsCount}} ({{notificationsCount}}){{/if}}</a></button>
-    {{/if}}
-    <p class="title">{{ user.email }}</p>
-    <p class="title"><span>Joined on</span> {{ user.created_at }}</p>
-  </div>
-  <div class="band">
-    {{#if isMe }}
-    <button><a href="/profile/update/{{user._id}}">Update profile</a></button>
-    <button><a href="/messages/{{user._id}}/all">Ver mensajes</a></button>
-    <button><a href="/events/{{user._id}}/recommendations">Ver Recomendaciones</a></button>
-    <button><a href="/events/{{user._id}}/event">Eventos que asistiré</a></button>
+<app-userProfile>
+      <div class="wrap">
+            <div class="card">
+                <img class="profile-img" src="/images/mexican-music.jpeg" alt="mexican-music">
+                <h2>{{user.nickname}}</h2>
+                {{#if isMe }}
+                    <button><a href="/notifications/{{user._id}}/all">Notificaciones {{#if notificationsCount}} ({{notificationsCount}}){{/if}}</a></button>
+                {{/if}}
+                <p class="title">{{ user.email }}</p>
+                <p class="title"><span></span> {{ user.loc }}</p>
+                <p class="title"><span>Joined on</span> {{ user.created_at }}</p>
+            </div>
+            <div class="band">
+                {{#if isMe }}
+                    <button><a href="/profile/update/{{user._id}}">Update profile</a></button>
+                    <button><a href="/messages/{{user._id}}/all">Ver mensajes</a></button>
+                    <button><a href="/events/{{user._id}}/recommendations">Ver Recomendaciones</a></button>
+                    <button><a href="/events/{{user._id}}/event">Eventos que asistiré</a></button>
 
-    {{else}}
-    <button><a href="/events/{{user._id}}/recommendations">Ver Recomendaciones</a></button>
-    <a href="/messages/send/{{user._id}}">Enviar mensaje</a>
-    {{/if}}
-    <h2>My bands</h2>
-    {{#each band}}
-
-    <p>{{bandname}}</p>
-    <span>Musical style: {{musicalGenres}}</span> <br><br>
-    <button><a href="/bandas/profile/{{_id}}">Band Profile</a></button>
-    {{/each}}
-    {{> backButton}}
-  </div>
-</div>
+                {{else}}
+                <button><a href="/events/{{user._id}}/recommendations">Ver Recomendaciones</a></button>
+                <a href="/messages/send/{{user._id}}">Enviar mensaje</a>
+                {{/if}}
+                <h2>My bands</h2>
+                {{#each band}}
+                    <p>{{bandname}}</p>
+                    <span>Musical style: {{musicalGenres}}</span> <br><br>
+                    <button><a href="/bandas/profile/{{_id}}">Band Profile</a></button>
+                {{/each}}
+              </div>
+        </div>
+</app-userProfile>
