@@ -118,4 +118,17 @@ app-userProfile{
         border-right: 2px black solid;
         border-bottom: 2px black solid;
     }
+    .close-menu-bands{
+        position: absolute;
+        padding: .75rem 1.25rem;
+        color: inherit;
+        line-height: 1;
+        text-shadow: 0 1px 0 #fff;
+        opacity: .5;
+        background-color: transparent;
+        border: 0;
+        right: 8%;
+        margin-top: -14%;
+        width: 0;
+    }
 }
