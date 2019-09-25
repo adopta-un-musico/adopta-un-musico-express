@@ -35,15 +35,18 @@
                     <div class="arrow-band"></div>
                     <button type="button" class="close-menu-bands" style="visibility: hidden">X</button>
                 </div>
-            </div>
-            <div class="band">
-                <h2>My bands</h2>
-                {{#each band}}
+                <div class="dropdown-band">
+                {{#if band}}
+                    {{#each band}}
                     <p>{{bandname}}</p>
                     <span>Musical style: {{musicalGenres}}</span> <br><br>
                     <button><a href="/bandas/profile/{{_id}}">Band Profile</a></button>
-                {{/each}}
-              </div>
+                    {{/each}}
+                {{else}}
+                    <p>Este usuario no esta añadido a ninguna banda todavía.</p>
+                {{/if}}
+                </div>
+            </div>
         </div>
 <script>
 $('.arrow-user').click(function(){
@@ -63,6 +66,24 @@ $('.close-menu').click(function(){
         });
         $(".close-menu").css({"visibility": "hidden"})
         $(".arrow-user").css({"visibility": "visible"})
+});
+$('.arrow-band').click(function(){
+        $('.dropdown-band').css({
+             "visibility": "visible",
+             "opacity": "1",
+             "display": "block", 
+        });
+        $(".close-menu-bands").css({"visibility": "visible"})
+        $(".arrow-band").css({"visibility": "hidden"})
+});
+$('.close-menu-bands').click(function(){
+        $('.dropdown-band').css({
+            "visibility": "hidden",
+             "opacity": "0",
+             "display": "none", 
+        });
+        $(".close-menu-bands").css({"visibility": "hidden"})
+        $(".arrow-band").css({"visibility": "visible"})
 });
 
 </script>
