@@ -28,12 +28,12 @@
                 {{#if isMe}}
                     <button class="button-profile"><a href="/bandas/{{band._id}}/update/">Actualizar Banda</a></button>
                     <button class="button-profile"><a href="/events/new/{{band._id}}/">Añadir Evento</a></button>
-                    <button class="danger"><a href="/bandas/{{band._id}}/delete">Eliminar Banda</a></button>
+                    <button class="alert"><a href="/bandas/{{band._id}}/delete">Eliminar Banda</a></button>
                     <button class="button-profile"><a href="/bandas/petitionc/{{band._id}}/check/">Revisar Peticiones</a></button>
                 {{/if}}
                 {{#if ifBand}}
                     <button class="button-profile"><a href="/chat/{{band.id}}/{{currentUser.nickname}}/{{band.bandname}}">Chat</a></button>
-                    <button class="danger"><a href="/bandas/{{band._id}}/{{currentUser._id}}/leave" class="danger">Salir de la Banda</a></button>
+                    <button class="alert"><a href="/bandas/{{band._id}}/{{currentUser._id}}/leave">Salir de la Banda</a></button>
                 {{else}}
                 {{#if ifPetition}}
                     <button class="button-profile"><a href="">Tu petición está siendo valorada por la banda.</a></button>
