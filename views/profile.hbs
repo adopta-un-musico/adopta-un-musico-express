@@ -4,12 +4,12 @@
             <div class="card">
                 <img class="profile-img" src="/images/mexican-music.jpeg" alt="mexican-music">
                 <h2>{{user.nickname}}</h2>
-                {{#if isMe }}
-                    <button class="button-profile"><a href="/notifications/{{user._id}}/all">Notificaciones {{#if notificationsCount}} ({{notificationsCount}}){{/if}}</a></button>
-                {{/if}}
                 <p class="title">{{ user.email }}</p>
                 <p class="title"><span></span> {{ user.loc }}</p>
                 <p class="title"><span>Joined on</span> {{ user.created_at }}</p>
+                {{#if isMe }}
+                    <button class="button-profile"><a href="/notifications/{{user._id}}/all">Notificaciones {{#if notificationsCount}} ({{notificationsCount}}){{/if}}</a></button>
+                {{/if}}
             </div>
             <div class="band">
                 {{#if isMe }}
