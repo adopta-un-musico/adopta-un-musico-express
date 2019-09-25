@@ -1,7 +1,6 @@
 {{> menu}}
 <h1>Eventos</h1>
 {{#if iWillAssist}}
-
 {{#each iWillAssist}}
 <p><i>{{nickname}} asistirá a este evento:</i></p>
 <p>Nombre:{{event_name}}</p>
@@ -12,6 +11,11 @@
 <button><a href="/events/detail/{{_id}}">Ver en detalle</a></button>
 {{/each}}
 {{else}}
-<p>El usuario {{username.nickname}} no ha marcado que asistirá a ningún evento, míra los <a href="/events/all">eventos
-    disponibles aquí.</a></p>
+    <app-noband>
+              <div class="card" style="margin: 5%;">
+                  <div class="content">
+                      <p>El usuario {{username.nickname}} no ha marcado que asistirá a ningún evento, míra los <a href="/events/all" style="font-size: 14px">eventos disponibles aquí.</a></p> 
+                  </div>             
+              </div>
+    </app-noband>
 {{/if}}
