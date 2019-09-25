@@ -1,0 +1,22 @@
+app-userProfile{
+    .card{
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0,0,0,.125);
+        border-radius: .25rem;
+        color: black;
+        padding: 14px;
+        margin-bottom: 20px;
+    }
+    .profile-img{
+        height: 100px;
+        width: 100px;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        border-radius: 50%;
+        background-size: 100% auto
+    }
+}
