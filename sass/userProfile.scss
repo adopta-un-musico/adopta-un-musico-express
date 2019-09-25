@@ -10,6 +10,8 @@ app-userProfile{
         color: black;
         padding: 14px;
         margin-bottom: 20px;
+        margin-top: 26%;
+        
     }
     .profile-img{
         height: 100px;
@@ -17,6 +19,26 @@ app-userProfile{
         background-repeat: no-repeat;
         background-position: 50%;
         border-radius: 50%;
-        background-size: 100% auto
+        background-size: 100% auto;
+        position: absolute;
+        margin-top: 4%;
+        top: 8%;
     }
+    .button-profile{
+        border: 1px solid transparent;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: .25rem;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        display: inline-block;
+        font-weight: 400;
+        color:white;
+        background-color: tomato;
+        border-color: tomato;
+        a{
+          color: white;
+          font-size: 1rem;
+        }
+      }
 }
