@@ -75,10 +75,9 @@ app-userProfile{
         opacity: .5;
         background-color: transparent;
         border: 0;
-        margin: 0 auto;
-        width: 0%;
-        margin-top: -15%;
-
+        right: 8%;
+        margin-top: -14%;
+        width: 0;
     }
     .action-profile-bands{
         flex-direction: column;
@@ -94,5 +93,29 @@ app-userProfile{
         h2{
             text-align: center
         }
+    }
+    .arrow-user{
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        right: 14%;
+        margin-top: -14%;
+        -webkit-transform: rotate(45deg);
+        border-left: none;
+        border-top: none;
+        border-right: 2px black solid;
+        border-bottom: 2px black solid;
+    }
+    .arrow-band{
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        right: 14%;
+        margin-top: -14%;
+        -webkit-transform: rotate(45deg);
+        border-left: none;
+        border-top: none;
+        border-right: 2px black solid;
+        border-bottom: 2px black solid;
     }
 }

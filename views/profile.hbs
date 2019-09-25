@@ -14,6 +14,7 @@
             <div class="action-profile">
                 <div class="user-actions">
                     <h2>Actions</h2>
+                    <div class="arrow-user"></div>
                     <button type="button" class="close-menu" style="visibility: hidden">X</button>
                 </div>
                     <div class="dropdown">
@@ -31,6 +32,7 @@
             <div class="action-profile-bands">
                 <div class="user-bands">
                     <h2>My Bands</h2>
+                    <div class="arrow-band"></div>
                 </div>
             </div>
             <div class="band">
@@ -43,7 +45,7 @@
               </div>
         </div>
 <script>
-$('.action-profile').click(function(){
+$('.arrow-user').click(function(){
                 console.log("click");
                 $('.dropdown').css({
                     "visibility": "visible",
@@ -51,16 +53,18 @@ $('.action-profile').click(function(){
                     "display": "block", 
                 });
             $(".close-menu").css({"visibility": "visible"})
+            $(".arrow-user").css({"visibility": "hidden"})
 });
-    $('.close-menu').click(function () {
-        $('.dropdown').css({
-                 "visibility": "hidden",
-                 "opacity": "0",
-                 "display": "none", 
-        });
-        console.log("ok");
-        $('.close-menu').css({"visibility": "hidden"})
-    });
+$('.close-menu').click(function(){
+                console.log("click");
+                $('.dropdown').css({
+                    "visibility": "hidden",
+                    "opacity": "0",
+                    "display": "none", 
+                });
+            $(".close-menu").css({"visibility": "hidden"})
+            $(".arrow-user").css({"visibility": "visible"})
+});
 
 </script>
 </app-userProfile>
