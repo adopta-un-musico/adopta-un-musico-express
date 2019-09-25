@@ -1,17 +1,24 @@
 {{> menu}}
 <app-profile>
   <div class="wrap">
-    {{#if noBand}}
-    <p>{{noBand}}</p>
-    {{else}}
-    <h1>{{band.bandname}}</h1>
-    <p>Ciudad: {{band.location}}</p>
-    <p>Generos musicales: {{band.musicalGenres}}</p>
-    <p>Members:
+    <div class="band-profile">
+      <div class="card">
+          {{#if noBand}}
+              <p>{{noBand}}</p>
+          {{else}}
+              <img class="profile-img" src="/images/mexican-music.jpeg" alt="mexican-music">
+              <h1 style="margin-top: 40px;">{{band.bandname}}</h1>
+              <p>Ciudad: {{band.location}}</p>
+              <p>Generos musicales: {{band.musicalGenres}}</p>
+      </div>
+     <div class="card-members"> 
+      <h2>Members</h2>
       {{#each band.members}}
-      <a href="/profile/{{this._id}}"> {{this.nickname}}</a>
-
+        <a class="users" href="/profile/{{this._id}}">{{this.nickname}}</a>
       {{/each}}
+    </div>
+    </div>
+
     </p>
     {{#if event}}
     <h1>Next Events:</h1>
