@@ -28,8 +28,14 @@
         </div>
         {{/each}}
         {{else}}
+        <app-noband>
           <h3 style="text-align: center; margin-top: 40px;">Bandas cerca de ti</h3>
-          <span>Ups!!! No hay bandas cerca de ti todavía o no has configurado tu localización, configúrala <a href="profile/update/{{user._id}}" style="font-size: 14px">ahora!</a></span>
+              <div class="card">
+                  <div class="content">
+                      <span>Ups!!! No hay bandas cerca de ti o todavía no has configurado tu localización, configúrala <a href="profile/update/{{user._id}}" style="font-size: 14px">ahora!</a></span> 
+                  </div>             
+              </div>
+        </app-noband>
         {{/if}}
     </div>
 </app-band>
