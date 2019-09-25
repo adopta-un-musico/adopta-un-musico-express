@@ -54,14 +54,14 @@ router.post('/:userId', async (req, res, next) => {
   } = req.body;
   try {
     // eslint-disable-next-line no-unused-vars
-    const form = new formidable.IncomingForm();
-    form.parse(req);
-    form.on('fileBegin', function (name, file){
-      file.path = __dirname + '/images/' + file.name;
-    });
-   const direction =  form.on('file', function (name, file){
-      console.log('Uploaded ' + file.name);
-    });
+   // const form = new formidable.IncomingForm();
+   // form.parse(req);
+   // form.on('fileBegin', function (name, file){
+    //  file.path = __dirname + '/images/' + file.name;
+   // });
+  // const direction =  form.on('file', function (name, file){
+    //  console.log('Uploaded ' + file.name);
+    //});
     const user = await User.findByIdAndUpdate(userId, {
       email,
       nickname,

@@ -8,9 +8,10 @@ const UserSchema = new Schema(
     hashedPassword: { type: String, required: true },
     musicalGenres:{ type: Array },
     instruments: { type: Array },
-    location: { type: String },
+    location: {type: Array, },
     nickname:  { type: String },
     image: {type: String},
+    loc: {type: String},
   },
   {
     timestamps: {
