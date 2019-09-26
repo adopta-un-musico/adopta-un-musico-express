@@ -5,12 +5,10 @@
   EMAIL:<input type="email" name="email" id="email" value="{{user.email}}" />
   Nickname:<input type="text" name="nickname" id="nickname" value="{{user.nickname}}" />
   Musical Genres: <select name="musicalGenres" value="{{user.musicalGenres}}">
-    <option value="Pop">Pop</option>
-    <option value="Rock">Rock</option>
+    {{> musicStyles}}
   </select>
   Instruments: <select name="instruments" value="{{user.instruments}}">
-    <option value="Flauta">Flauta</option>
-    <option value="Guitarra">Guitarra</option>
+    {{> instruments}}
   </select>
   Location:
   <input type='location' name="loc" value="{{user.loc}}" />
