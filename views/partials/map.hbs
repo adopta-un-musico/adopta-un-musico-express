@@ -1,19 +1,17 @@
 <div id="map"></div>
 <script>
   function initMap() {
-    const lat = 41.3977381;
-    const lng = 2.190471916;
+    const lat = {{ eventToView.lat }};
+    const lng = {{ eventToView.lgt }};
     const center = { lat: lat, lng: lng };
     const map = new google.maps.Map(document.getElementById('map'), {
       zoom: 9,
       center: center,
       scrollwheel: false
     });
-    // la siguiente variable debereía mostrar la información del evento en el pin. 
-    // No lo hace, investigar bien
     const contentString = `
-        <strong>{{{event.name}}}<br />
-        {{{event.location}}}</strong>
+        <strong>{{eventToView.event_name}}<br />
+        {{eventToView.location}}</strong>
       `
     const infowindow = new google.maps.InfoWindow({
       content: contentString
