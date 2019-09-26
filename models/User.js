@@ -6,12 +6,15 @@ const UserSchema = new Schema(
   {
     email: { type: String, required: true },
     hashedPassword: { type: String, required: true },
-    musicalGenres:{ type: Array },
+    musicalGenres: { type: Array },
     instruments: { type: Array },
-    location: {type: Array, },
-    nickname:  { type: String },
-    image: {type: String},
-    loc: {type: String},
+    location: String,
+    lat: Number,
+    lgt: Number,
+    nickname: { type: String },
+    image: { type: String },
+    // location: {type: Array, },
+    loc: { type: String },
   },
   {
     timestamps: {

@@ -1,12 +1,22 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-underscore-dangle */
 const express = require('express');
+const NodeGeocoder = require('node-geocoder');
 const Band = require('../models/Band');
 const User = require('../models/User');
 const Events = require('../models/Events');
 const Notification = require('../models/Notifications');
 
 const router = express.Router();
+
+const options = {
+  provider: 'google',
+  httpAdapter: 'https',
+  apiKey: process.env.GEOCODER_API_KEY,
+  formatter: null,
+};
+
+const geocoder = NodeGeocoder(options);
 
 router.get('/all', async (req, res, next) => {
   try {
@@ -93,17 +103,27 @@ router.get('/:bandId/update', async (req, res, next) => {
 router.post('/:bandId/update_band', async (req, res, next) => {
   const { bandId } = req.params;
   const {
-    name, location, musicalGenres, petitions,
+    name, musicalGenres, petitions,
   } = req.body;
   try {
-    // eslint-disable-next-line no-unused-vars
-    const band = await Band.findByIdAndUpdate(bandId, {
-      bandname: name,
-      location,
-      musicalGenres,
-      requests: petitions,
+    geocoder.geocode(req.body.location, async (err, data) => {
+      if (err || !data.length) {
+        req.flash('error', 'La dirección no es válida');
+        res.redirect('back');
+      }
+      const lat = data[0].latitude;
+      const lgt = data[0].longitude;
+      const location = data[0].formattedAddress;
+      const band = await Band.findByIdAndUpdate(bandId, {
+        bandname: name,
+        location,
+        lat,
+        lgt,
+        musicalGenres,
+        requests: petitions,
+      });
     });
-    req.flash('info', 'Banda Actualizada correctamente');
+    req.flash('info', 'Banda actualizada correctamente');
     res.redirect(`/bandas/profile/${bandId}`);
   } catch (error) {
     next(error);

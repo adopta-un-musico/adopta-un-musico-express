@@ -3,10 +3,7 @@
 <form action="/events/{{bandId}}/add" method="POST">
    <input type="text" name="name" id="name" placeholder="Nombre del evento">
    <input type="date" name="date">
-   <select name="location">
-      <option value="Barcelona">Barcelona</option>
-      <option value="Madrid">Madrid</option>
-   </select>
+   <input type="text" name="location" id="location" placeholder="Localización">
    <input type="submit" value="Crear Evento" />
    {{> backButton}}
 </form>

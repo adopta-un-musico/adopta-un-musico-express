@@ -1,18 +1,14 @@
 {{> menu}}
 <h1>Update Band</h1>
-<form action="/bandas/{{band._id}}/update_band" method="POST">
+<form class='box' action="/bandas/{{band._id}}/update_band" method="POST">
   <input type="text" name="name" id="name" value="{{band.bandname}}">
-  <select name="location" value="{{band.location}}">
-    <option value="Barcelona">Barcelona</option>
-    <option value="Madrid">Madrid</option>
-  </select>
+  <input type="location" name="location" value="{{band.location}}" />
   <select name="musicalGenres" value="{{band.musicalGenres}}">
-    <option value="Pop">Pop</option>
-    <option value="Rock">Rock</option>
+    {{> musicStyles}}
   </select>
   <select name="petitions" value="{{band.requests}}">
-    <option value="Abiertas">Abiertas</option>
-    <option value="Cerradas">cerradas</option>
+    <option value="Abiertas">Aceptamos miembros!</option>
+    <option value="Cerradas">Ya estamos completos!</option>
   </select>
   <input type="submit" value="Actualizar banda" />
 </form>
