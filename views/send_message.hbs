@@ -1,6 +1,7 @@
+{{> menu}}
 <h1>Enviar mensaje:</h1>
-<form action="/messages/send/{{receiver}}/{{currentUser._id}}" method="post">
-  <input type="text" name="messageSend" placeholder="Mensaje a enviar">
+<form class="box" action="/messages/send/{{receiver}}/{{currentUser._id}}" method="post">
+  <textarea name="messageSend" rows="10" cols="30" placeholder="Envia un mensaje!"></textarea>
   <input type="submit" value="Enviar">
 </form>
 {{> backButton}}

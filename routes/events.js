@@ -1,9 +1,19 @@
 /* eslint-disable no-underscore-dangle */
 const express = require('express');
+const NodeGeocoder = require('node-geocoder');
 const Events = require('../models/Events');
 const User = require('../models/User');
 
 const router = express.Router();
+
+const options = {
+  provider: 'google',
+  httpAdapter: 'https',
+  apiKey: process.env.GEOCODER_API_KEY,
+  formatter: null,
+};
+
+const geocoder = NodeGeocoder(options);
 
 router.get('/all', async (req, res, next) => {
   try {
@@ -59,13 +69,24 @@ router.get('/new/:bandId', async (req, res, next) => {
 
 router.post('/:bandId/add', async (req, res, next) => {
   const { bandId } = req.params;
-  const { name, date, location } = req.body;
+  const { name, date } = req.body;
   try {
-    const event = await Events.create({
-      event_manager: bandId,
-      event_name: name,
-      location: location,
-      date: date,
+    geocoder.geocode(req.body.location, async (err, data) => {
+      if (err || !data.length) {
+        req.flash('error', 'La dirección no es válida');
+        res.redirect('back');
+      }
+      const lat = data[0].latitude;
+      const lgt = data[0].longitude;
+      const location = data[0].formattedAddress;
+      const event = await Events.create({
+        event_manager: bandId,
+        event_name: name,
+        location,
+        lat,
+        lgt,
+        date,
+      });
     });
     req.flash('info', 'Evento creado correctamente');
     res.redirect(`/bandas/profile/${bandId}`);
@@ -73,6 +94,7 @@ router.post('/:bandId/add', async (req, res, next) => {
     next(error);
   }
 });
+
 router.get('/delete/:eventId', async (req, res, next) => {
   const { eventId } = req.params;
 
@@ -142,16 +164,29 @@ router.get('/update/:eventId', async (req, res, next) => {
 
 router.post('/:eventId/upd', async (req, res, next) => {
   const { eventId } = req.params;
-  const { name, date, location } = req.body;
+  const { name, date } = req.body;
 
   try {
-    const event = await Events.findByIdAndUpdate(eventId, {
-      event_name: name,
-      location: location,
-      date: date,
+    geocoder.geocode(req.body.location, async (err, data) => {
+      if (err || !data.length) {
+        req.flash('error', 'La dirección no es válida');
+        res.redirect('back');
+      }
+      const lat = data[0].latitude;
+      console.log(lat);
+      const lgt = data[0].longitude;
+      console.log(lgt);
+      const location = data[0].formattedAddress;
+      const modifiedEvent = await Events.findByIdAndUpdate(eventId, {
+        event_name: name,
+        location,
+        lat,
+        lgt,
+        date,
+      });
     });
-    req.flash('info', 'Evento creado correctamente');
-    res.redirect(`/events/detail/${event._id}`);
+    req.flash('info', 'Evento modificado correctamente');
+    res.redirect(`/events/detail/${eventId}`);
   } catch (error) {
     next(error);
   }

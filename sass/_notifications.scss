@@ -1,18 +1,40 @@
 .notifications {
-  position: relative;
-  margin-bottom: 1rem;
+  position: fixed;
   border: 1px solid transparent;
   border-radius: 0.25rem;
-}
-.error {
-  padding: 0.75rem 1.25rem;
-  color: #721c24;
-  background-color: #f8d7da;
-  border-color: #f5c6cb;
-}
-.info {
-  padding: 0.75rem 1.25rem;
-  color: #004085;
-  background-color: #cce5ff;
-  border-color: #b8daff;
+  width: 100%;
+  bottom: 0;
+  p {
+    margin: 0;
+  }
+  .error {
+    padding: 0.75rem 1.25rem;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+  }
+  .info {
+    padding: 0.75rem 1.25rem;
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+  }
+  &.hide {
+    transition: 2s;
+  }
+  .close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: .75rem 1.25rem;
+    color: inherit;
+    line-height: 1;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+    background-color: transparent;
+    border: 0;
+    margin: 0 auto;
+    width: 1%;
+  }
+ 
 }

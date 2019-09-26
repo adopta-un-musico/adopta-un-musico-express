@@ -1,13 +1,14 @@
+{{> menu}}
 <h1>Petitions</h1>
 {{#if petitions.petitions}}
 {{#each petitions.petitions}}
-<p><i> El usuario {{nickname}} ha enviado una petición para unirse a la banda:</i></p>
+<p><i> El usuario {{this.nickname}} ha enviado una petición para unirse a la banda:</i></p>
 <p>Nombre: {{nickname}}</p>
 <p>Generos músicales: {{musicalGenres}}</p>
 <p>Instrumentos que toca: {{instruments}}</p>
 <a href="/profile/{{_id}}">Ver Perfil</a>
-<a href="/bandas/accept/{{_id}}/{{bandId}}/user">Aceptar</a>
-<a href="/bandas/decline/{{_id}}/{{bandId}}/user">Rechazar</a>
+<a href="/bandas/accept/{{_id}}/{{../bandId}}/user">Aceptar</a>
+<a href="/bandas/decline/{{_id}}/{{../bandId}}/user">Rechazar</a>
 {{/each}}
 {{else}}
 <p>Todavía no han enviado ninguna petición.</p>

@@ -1,0 +1,8 @@
+.back-button {
+  @include button;
+  margin: 5%;
+}
+
+.back-button a {
+  color: white;
+}
