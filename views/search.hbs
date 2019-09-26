@@ -15,9 +15,9 @@
 
 <div class="wrap">
   <div class="card">
-    <h1>Search results</h1>
-    <h2>{{user.nickname}}nickname</h2>
-    <h2>{{ user.email }}email@gmail.com</h2>
-    {{> backButton}}
+    {{#each users}}
+      <h2>{{this.nickname}}</h2>
+      <h2>{{ this.email }}</h2>
+    {{/each}}
   </div>
 </div>
