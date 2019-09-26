@@ -4,9 +4,21 @@
     <app-search>
       <h2>adoptaunmusico.com</h2>
       <div class="content">
-        <label>Buscar</label>
-        <input type="search" placeholder="Search ...">
+        <form class="box" id="form" action="/search" method="POST">
+          <label for="search">Buscar</label>
+          <input type="search" id="search" name="search" placeholder="Search ...">
+        </form>
       </div>
     </app-search>
   </div>
 </app-search>
+
+
+<div class="wrap">
+  <div class="card">
+    {{#each users}}
+      <h2>{{this.nickname}}</h2>
+      <h2>{{ this.email }}</h2>
+    {{/each}}
+  </div>
+</div>
