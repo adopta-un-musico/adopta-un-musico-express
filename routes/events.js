@@ -166,16 +166,29 @@ router.get('/update/:eventId', async (req, res, next) => {
 
 router.post('/:eventId/upd', async (req, res, next) => {
   const { eventId } = req.params;
-  const { name, date, location } = req.body;
+  const { name, date } = req.body;
 
   try {
-    const event = await Events.findByIdAndUpdate(eventId, {
-      event_name: name,
-      location: location,
-      date: date,
+    geocoder.geocode(req.body.location, async (err, data) => {
+      if (err || !data.length) {
+        req.flash('error', 'La dirección no es válida');
+        res.redirect('back');
+      }
+      const lat = data[0].latitude;
+      console.log(lat);
+      const lgt = data[0].longitude;
+      console.log(lgt);
+      const location = data[0].formattedAddress;
+      const modifiedEvent = await Events.findByIdAndUpdate(eventId, {
+        event_name: name,
+        location,
+        lat,
+        lgt,
+        date,
+      });
     });
-    req.flash('info', 'Evento creado correctamente');
-    res.redirect(`/events/detail/${event._id}`);
+    req.flash('info', 'Evento modificado correctamente');
+    res.redirect(`/events/detail/${eventId}`);
   } catch (error) {
     next(error);
   }
