@@ -1,0 +1,12 @@
+.messages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  border: solid 1px #eee;
+  padding: 10px;
+}
+
+.messages p {
+  color: red;
+}

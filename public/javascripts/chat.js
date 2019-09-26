@@ -1,45 +1,47 @@
-$(function() {
-  const username = $("#username").text();
-  const message = document.getElementById("text");
-  const userTyping = document.getElementById("typingu");
-  const room = $("#band").text();
-  var socket = io();
+/* eslint-disable no-undef */
+$(() => {
+  const username = $('#username').text();
+  const message = document.getElementById('text');
+  const userTyping = document.getElementById('typingu');
+  const room = $('#band').text();
+  const socket = io();
+  // eslint-disable-next-line no-console
   console.log(room);
-  socket.on("connect", () => {
-    socket.emit("room", { sala: room });
+  socket.on('connect', () => {
+    socket.emit('room', { sala: room });
   });
 
-  $("form").submit(function(e) {
+  $('form').submit((e) => {
     e.preventDefault();
-    socket.emit("chat message", {
+    socket.emit('chat message', {
       username,
       message: message.value,
-      sala: room
+      sala: room,
     });
-    message.value = "";
+    message.value = '';
   });
 
-  socket.on("chat message", msg => {
-    $("#messages").append($("<p>").text(msg.username + ": " + msg.message));
+  socket.on('chat message', (msg) => {
+    $('#messages').append($('<p>').text(`${msg.username}: ${msg.message}`));
   });
 
-  message.addEventListener("keypress", () => {
-    socket.emit("typing", { username, message: "is typing...", sala: room });
+  message.addEventListener('keypress', () => {
+    socket.emit('typing', { username, message: 'is typing...', sala: room });
   });
 
-  socket.on("isTyping", data => {
-    userTyping.innerText = data.username + " " + data.message;
+  socket.on('isTyping', (data) => {
+    userTyping.innerText = `${data.username} ${data.message}`;
   });
 
-  $("form").submit(() => {
-    socket.emit("stopTyping", { sala: room });
+  $('form').submit(() => {
+    socket.emit('stopTyping', { sala: room });
   });
-  socket.on("userstopTyping", () => {
-    userTyping.innerText = "";
+  socket.on('userstopTyping', () => {
+    userTyping.innerText = '';
   });
-  socket.on("all messages", (data) =>{
-      $.each(data, function () {
-        $("#messages").append($("<p>").text(this.username + ": " + this.message));
-      });
+  socket.on('all messages', (data) => {
+    $.each(data, function () {
+      $('#messages').append($('<p>').text(`${this.username}: ${this.message}`));
+    });
   });
 });
