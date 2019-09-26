@@ -14,6 +14,7 @@
             <div class="action-profile">
                 <div class="user-actions">
                     <h2>Actions</h2>
+                    <div class="arrow-user"></div>
                     <button type="button" class="close-menu" style="visibility: hidden">X</button>
                 </div>
                     <div class="dropdown">
@@ -23,44 +24,67 @@
                              <button class="button-profile"><a href="/events/{{user._id}}/recommendations">Ver Recomendaciones</a></button>
                              <button class="button-profile"><a href="/events/{{user._id}}/event">Eventos que asistiré</a></button>
                         {{else}}
-                             <button><a href="/events/{{user._id}}/recommendations">Ver Recomendaciones</a></button>
-                             <a href="/messages/send/{{user._id}}">Enviar mensaje</a>
+                             <button class="button-profile"><a href="/events/{{user._id}}/recommendations">Ver Recomendaciones</a></button>
+                             <button class="button-profile"><a href="/messages/send/{{user._id}}">Enviar mensaje</a></button>
                         {{/if}}
                     </div>
             </div>
             <div class="action-profile-bands">
                 <div class="user-bands">
                     <h2>My Bands</h2>
+                    <div class="arrow-band"></div>
+                    <button type="button" class="close-menu-bands" style="visibility: hidden">X</button>
                 </div>
-            </div>
-            <div class="band">
-                <h2>My bands</h2>
-                {{#each band}}
+                <div class="dropdown-band">
+                {{#if band}}
+                    {{#each band}}
                     <p>{{bandname}}</p>
                     <span>Musical style: {{musicalGenres}}</span> <br><br>
-                    <button><a href="/bandas/profile/{{_id}}">Band Profile</a></button>
-                {{/each}}
-              </div>
+                    <button class="button-profile"><a href="/bandas/profile/{{_id}}">Band Profile</a></button>
+                    {{/each}}
+                {{else}}
+                    <p>Este usuario no esta añadido a ninguna banda todavía.</p>
+                {{/if}}
+                </div>
+            </div>
         </div>
 <script>
-$('.action-profile').click(function(){
-                console.log("click");
-                $('.dropdown').css({
-                    "visibility": "visible",
-                    "opacity": "1",
-                    "display": "block", 
-                });
-            $(".close-menu").css({"visibility": "visible"})
-});
-    $('.close-menu').click(function () {
+$('.arrow-user').click(function(){
         $('.dropdown').css({
-                 "visibility": "hidden",
-                 "opacity": "0",
-                 "display": "none", 
+             "visibility": "visible",
+             "opacity": "1",
+             "display": "block", 
         });
-        console.log("ok");
-        $('.close-menu').css({"visibility": "hidden"})
-    });
+        $(".close-menu").css({"visibility": "visible"})
+        $(".arrow-user").css({"visibility": "hidden"})
+});
+$('.close-menu').click(function(){
+        $('.dropdown').css({
+            "visibility": "hidden",
+             "opacity": "0",
+             "display": "none", 
+        });
+        $(".close-menu").css({"visibility": "hidden"})
+        $(".arrow-user").css({"visibility": "visible"})
+});
+$('.arrow-band').click(function(){
+        $('.dropdown-band').css({
+             "visibility": "visible",
+             "opacity": "1",
+             "display": "block", 
+        });
+        $(".close-menu-bands").css({"visibility": "visible"})
+        $(".arrow-band").css({"visibility": "hidden"})
+});
+$('.close-menu-bands').click(function(){
+        $('.dropdown-band').css({
+            "visibility": "hidden",
+             "opacity": "0",
+             "display": "none", 
+        });
+        $(".close-menu-bands").css({"visibility": "hidden"})
+        $(".arrow-band").css({"visibility": "visible"})
+});
 
 </script>
 </app-userProfile>
