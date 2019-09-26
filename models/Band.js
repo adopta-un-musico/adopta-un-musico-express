@@ -27,6 +27,8 @@ const bandSchema = new Schema(
     ],
     requests: { type: String, default: 'Abiertas'},
     location: String,
+    lat: Number,
+    lgt: Number,
   },
   {
     timestamps: {

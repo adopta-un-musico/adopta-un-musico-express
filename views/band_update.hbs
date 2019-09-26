@@ -2,10 +2,7 @@
 <h1>Update Band</h1>
 <form class='box' action="/bandas/{{band._id}}/update_band" method="POST">
   <input type="text" name="name" id="name" value="{{band.bandname}}">
-  <select name="location" value="{{band.location}}">
-    <option value="Barcelona">Barcelona</option>
-    <option value="Madrid">Madrid</option>
-  </select>
+  <input type="location" name="location" value="{{band.location}}" />
   <select name="musicalGenres" value="{{band.musicalGenres}}">
     {{> musicStyles}}
   </select>
