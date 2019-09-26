@@ -77,9 +77,7 @@ router.post('/:bandId/add', async (req, res, next) => {
         res.redirect('back');
       }
       const lat = data[0].latitude;
-      console.log(lat);
       const lgt = data[0].longitude;
-      console.log(lgt);
       const location = data[0].formattedAddress;
       const event = await Events.create({
         event_manager: bandId,
