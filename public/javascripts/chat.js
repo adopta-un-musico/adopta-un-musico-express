@@ -22,7 +22,11 @@ $(() => {
   });
 
   socket.on('chat message', (msg) => {
-    $('#messages').append($('<p class="user">').text(`${msg.username}: ${msg.message}`));
+    if (msg.username === username) {
+      $('#messages').append($('<p class="user">').text(`${msg.username}: ${msg.message}`));
+    } else {
+      $('#messages').append($('<p class="other-user">').text(`${msg.username}: ${msg.message}`));
+    }
   });
 
   message.addEventListener('keypress', () => {
@@ -40,7 +44,7 @@ $(() => {
     userTyping.innerText = '';
   });
   socket.on('all messages', (data) => {
-    $.each(data, function () {
+    $.each(data, () => {
       $('#messages').append($('<p>').text(`${this.username}: ${this.message}`));
     });
   });
