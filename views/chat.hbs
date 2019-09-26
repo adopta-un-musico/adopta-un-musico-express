@@ -5,7 +5,7 @@
 <p id="username" style="visibility: hidden">{{currentUser}}</p>
 <div id="messages">
   {{#each messages}}
-      <p>{{username}}: {{message}} {{#if ifUser }} - <a href="/chat/delete/{{_id}}">Delete</a> {{/if}}</p>
+  <p class="speech">{{username}}: {{message}} {{#if ifUser }} - <a href="/chat/delete/{{_id}}">Delete</a> {{/if}}</p>
   {{/each}}
 </div>
 <p id="typingu"></p>
