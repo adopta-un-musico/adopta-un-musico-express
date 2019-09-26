@@ -11,11 +11,22 @@
 //   color: red;
 // }
 
-.speech {
+.user {
   position: relative;
   font-family: arial;
   font-size: 1.1em;
   background: #a53d38;
+  color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 400px;
+}
+
+.other-user {
+  position: relative;
+  font-family: arial;
+  font-size: 1.1em;
+  background: #383aa5;
   color: #fff;
   border-radius: 10px;
   padding: 20px;

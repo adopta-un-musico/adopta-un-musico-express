@@ -2,10 +2,12 @@
 {{#if ifBandMember}}
 <h1>Chat de la banda </h1>
 <p id="band" style="visibility: hidden">{{band.bandname}}</p>
-<p id="username" style="visibility: hidden">{{currentUser}}</p>
+<p id="username">{{currentUser}}</p>
 <div id="messages">
   {{#each messages}}
-  <p class="speech">{{username}}: {{message}} {{#if ifUser }} - <a href="/chat/delete/{{_id}}">Delete</a> {{/if}}</p>
+  <p class="user">
+    {{username}}: {{message}}
+  </p>
   {{/each}}
 </div>
 <p id="typingu"></p>

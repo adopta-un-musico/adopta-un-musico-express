@@ -22,7 +22,7 @@ $(() => {
   });
 
   socket.on('chat message', (msg) => {
-    $('#messages').append($('<p>').text(`${msg.username}: ${msg.message}`));
+    $('#messages').append($('<p class="user">').text(`${msg.username}: ${msg.message}`));
   });
 
   message.addEventListener('keypress', () => {
