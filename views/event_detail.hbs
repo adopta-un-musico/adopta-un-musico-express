@@ -1,4 +1,6 @@
+{{> menu}}
 {{#if eventToView }}
+<<<<<<< HEAD
 <h1>{{eventToView.event_name}}</h1>
 <p>Location: {{eventToView.location}}</p>
 <p>Date: {{eventToView.date}}</p>
@@ -18,7 +20,58 @@
 <button><a href="/events/leave/{{eventToView._id}}">Ya no asistiré</a></button {{else}} <button><a
   href="/events/join/{{eventToView._id}}">Asistiré</a></button>
 {{/if}}
+=======
+<app-detailEvent>
+  <div class="card">
+      <h1>{{eventToView.event_name}}</h1>
+      <p>Location: {{eventToView.location}}</p>
+      <p>Date: {{eventToView.date}}</p>
+      <p>Banda: {{eventToView.event_manager.bandname}} </p>
+      <p>Total Recommendations: {{result}}</p>
+     </div>
+    <div class="events-actions">
+        <h2>Actions</h2>
+        <div class="arrow-actions"></div>
+        <div class="dropdown-events">
+            <button type="button" class="close-menu" style="visibility: hidden">X</button>
+            {{#if isMe}}
+                <button class="button-profile"><a href="/events/delete/{{eventToView._id}}">Eliminar Evento</a></button>
+                <button class="button-profile"><a href="/events/update/{{eventToView._id}}">Actualizar Evento</a></button>
+            {{/if}}
+            {{#if ifRecommended}}
+                <button class="button-profile"><a href="/events/norecommend/{{eventToView._id}}">Dejar de Recomendar</a></button>
+            {{else}}
+                <button class="button-profile"><a href="/events/recommend/{{eventToView._id}}">Recomendar</a></button>
+            {{/if}}
+            {{#if ifuserWillAssist}}
+            <button class="button-profile"><a href="/events/leave/{{eventToView._id}}">Ya no asistiré</a></button>
+            {{else}}
+             <button class="button-profile"><a href="/events/join/{{eventToView._id}}">Asistiré</a></button>
+            {{/if}}
+      </div>
+    </div>
+<script>
+  $('.arrow-actions').click(function(){
+        $('.dropdown-events').css({
+             "visibility": "visible",
+             "opacity": "1",
+             "display": "block", 
+        });
+        $(".close-menu").css({"visibility": "visible"})
+        $(".arrow-actions").css({"visibility": "hidden"})
+});
+$('.close-menu').click(function(){
+        $('.dropdown-events').css({
+            "visibility": "hidden",
+             "opacity": "0",
+             "display": "none", 
+        });
+        $(".close-menu").css({"visibility": "hidden"})
+        $(".arrow-actions").css({"visibility": "visible"})
+});
+</script>
+>>>>>>> dev
 {{else}}
 <p>Este evento aún no existe o ha sido eliminado</p>
 {{/if}}
-{{> backButton}}
+</app-detailEvent>

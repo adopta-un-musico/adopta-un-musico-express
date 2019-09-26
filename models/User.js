@@ -13,6 +13,8 @@ const UserSchema = new Schema(
     lgt: Number,
     nickname: { type: String },
     image: { type: String },
+    // location: {type: Array, },
+    loc: { type: String },
   },
   {
     timestamps: {

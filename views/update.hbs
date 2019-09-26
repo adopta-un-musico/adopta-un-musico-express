@@ -1,6 +1,7 @@
+{{> menu}}
 <h1>Actualizar datos</h1>
 
-<form action="/profile/{{user._id}}" enctype="multipart/form-data" method="POST">
+<form action="/profile/{{user._id}}"  method="POST">
   EMAIL:<input type="email" name="email" id="email" value="{{user.email}}" />
   Nickname:<input type="text" name="nickname" id="nickname" value="{{user.nickname}}" />
   Musical Genres: <select name="musicalGenres" value="{{user.musicalGenres}}">
@@ -11,7 +12,10 @@
     <option value="Flauta">Flauta</option>
     <option value="Guitarra">Guitarra</option>
   </select>
- Image: <input type="file" name="image">
+  Location: <select name="loc" value="{{user.loc}}">
+    <option value="Barcelona">Barcelona</option>
+    <option value="Madrid">Madrid</option>
+  </select>
   <input type="submit" value="Actualizar Datos" />
 </form>
 {{> backButton}}
