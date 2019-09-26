@@ -1,19 +1,27 @@
 {{> menu}}
 <h1>Eventos</h1>
-{{#if iWillAssist}}
-
-{{#each iWillAssist}}
-<p><i>{{#each  }}{{nickname}} asistirá a este evento:</i></p>
-<p>Nombre:{{event_name}}</p>
-<p>Lugar: {{location}}</p>
-<p>Fecha: {{date}}</p>
-<p>Banda: {{event_manager.bandname}}</p>
-<p>Estilo de música de la banda: {{event_manager.musicalGenres}}</p>
-<button><a href="/events/detail/{{_id}}">Ver en detalle</a></button>
-
-{{/each}}
+<app-events>
+    <div class="wrap">
+            <div class="card">
+                {{#if iWillAssist}}
+                {{#each iWillAssist}}
+                    <p><i>{{../username.nickname}} asistirá a este evento:</i></p>
+                    <p>Nombre: {{event_name}}</p>
+                    <p>Lugar: {{location}}</p>
+                    <p>Fecha: {{date}}</p>
+                    <p>Banda: {{event_manager.bandname}}</p>
+                    <p>Estilo de música de la banda: {{event_manager.musicalGenres}}</p>
+                    <button class="button-event"><a href="/events/detail/{{_id}}">Ver en detalle</a></button>
+                {{/each}}
+            </div>
+    </div>
 {{else}}
-<p>El usuario {{username.nickname}} no ha marcado que asistirá a ningún evento, míra los <a href="/events/all">eventos
-    disponibles aquí.</a></p>
+    <app-noband>
+              <div class="card" style="margin: 5%;">
+                  <div class="content">
+                      <p>El usuario {{username.nickname}} no ha marcado que asistirá a ningún evento, míra los <a href="/events/all" style="font-size: 14px">eventos disponibles aquí.</a></p> 
+                  </div>             
+              </div>
+    </app-noband>
 {{/if}}
-{{> backButton}}
+</app-events>
