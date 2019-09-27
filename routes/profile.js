@@ -14,15 +14,15 @@ router.get('/:currentUser', async (req, res, next) => {
   try {
     const user = await User.find({nickname: currentUser });
     if (user) {
-      console.log(user[0].nickname);
-      const isMe = req.session.currentUser._id == user._id.toString();
+      const isMe = req.session.currentUser._id === user[0]._id.toString();
       const band = await Band.find({ members: user.id });
+      const userProfile = user[0];
       const notificationsCount = await Notifications.find({
         receiver: req.session.currentUser._id,
         visited: 0,
       }).count();
       res.render('profile', {
-        user,
+        userProfile,
         isMe,
         band,
         notificationsCount,
@@ -33,10 +33,10 @@ router.get('/:currentUser', async (req, res, next) => {
   }
 });
 
-router.get('/update/:userId', async (req, res, next) => {
-  const { userId } = req.params;
+router.get('/update/:currentUser', async (req, res, next) => {
+  const { currentUser } = req.params;
   try {
-    const user = await User.findById(userId);
+    const user = await User.find({nickname: currentUser});
     console.log(user);
     res.render('update', { user });
   } catch (error) {
@@ -44,8 +44,8 @@ router.get('/update/:userId', async (req, res, next) => {
   }
 });
 
-router.post('/:userId', async (req, res, next) => {
-  const { userId } = req.params;
+router.post('/:currentUser', async (req, res, next) => {
+  const { currentUser } = req.params;
 
   const {
     email,
@@ -64,7 +64,8 @@ router.post('/:userId', async (req, res, next) => {
     // const direction =  form.on('file', function (name, file){
     //  console.log('Uploaded ' + file.name);
     // });
-    const user = await User.findByIdAndUpdate(userId, {
+    const userId = await User.find({nickname: currentUser})
+    const user = await User.findByIdAndUpdate(userId._id, {
       email,
       nickname,
       musicalGenres,
