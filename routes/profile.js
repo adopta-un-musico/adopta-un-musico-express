@@ -9,13 +9,14 @@ const formidable = require('formidable');
 const router = express.Router();
 
 /* GET users listing. */
-router.get('/:userId', async (req, res, next) => {
-  const { userId } = req.params;
+router.get('/:currentUser', async (req, res, next) => {
+  const { currentUser } = req.params;
   try {
-    const user = await User.findById(userId);
+    const user = await User.find({nickname: currentUser });
     if (user) {
-      const isMe = req.session.currentUser._id === user._id.toString();
-      const band = await Band.find({ members: userId });
+      console.log(user[0].nickname);
+      const isMe = req.session.currentUser._id == user._id.toString();
+      const band = await Band.find({ members: user.id });
       const notificationsCount = await Notifications.find({
         receiver: req.session.currentUser._id,
         visited: 0,
@@ -36,6 +37,7 @@ router.get('/update/:userId', async (req, res, next) => {
   const { userId } = req.params;
   try {
     const user = await User.findById(userId);
+    console.log(user);
     res.render('update', { user });
   } catch (error) {
     next(error);
