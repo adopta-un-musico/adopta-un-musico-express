@@ -27,9 +27,9 @@ router.get('/detail/:sender', async (req, res, next) => {
   }
 });
 
-router.get('/send/:receiver', (req, res, next) => {
-  const { receiver } = req.params;
-  res.render('send_message', { receiver });
+router.get('/send/:userSender', (req, res, next) => {
+  const { userSender } = req.params;
+  res.render('send_message', { userSender });
 });
 router.post('/send/:receiver/:currentUser', async (req, res, next) => {
   const { receiver } = req.params;
