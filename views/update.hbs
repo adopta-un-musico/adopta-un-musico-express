@@ -1,7 +1,7 @@
 {{> menu}}
 <h1>Actualizar datos</h1>
 
-<form class="box" action="/profile/{{user._id}}" method="POST">
+<form class="box" action="/profile/{{currentUser.nickname}}" method="POST">
   EMAIL:<input type="email" name="email" id="email" value="{{user.email}}" />
   Nickname:<input type="text" name="nickname" id="nickname" value="{{user.nickname}}" />
   Musical Genres: <select name="musicalGenres" value="{{user.musicalGenres}}">
