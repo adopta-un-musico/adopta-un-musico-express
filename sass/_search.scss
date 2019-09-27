@@ -1,15 +1,88 @@
 app-search {
- .search{
-  height: calc(1.5em + .75rem + 2px);
-  padding: .375rem .75rem;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #495057;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #ced4da;
-  border-radius: .25rem;
-  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
- }
-}
+ 
+//   height: calc(1.5em + .75rem + 2px);
+//   padding: .375rem .75rem;
+//   font-weight: 400;
+//   line-height: 1.5;
+//   color: #495057;
+//   background-color: #fff;
+//   background-clip: padding-box;
+//   border: 1px solid #ced4da;
+//   border-radius: .25rem;
+//   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+ 
+//  .card {
+//     /* Add shadows to create the "card" effect */
+//     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+//     transition: 0.3s;
+//     width: 80%;
+//     flex-direction: column;
+//     min-width: 0;
+//     word-wrap: break-word;
+//     background-color: #fff;
+//     background-clip: border-box;
+//     border: 1px solid rgba(0,0,0,.125);
+//     border-radius: .25rem;
+//     color: black;
+//     padding: 14px;
+//     margin: o auto;
+//   }
+  
+//   /* On mouse-over, add a deeper shadow */
+//   .card:hover {
+//     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+//   }
+  
+//   /* Add some padding inside the card container */
+//   .container {
+//     padding: 2px 16px;
+//   }
+
+.band{
+    max-width: 540px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    color: black;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    .band-section{
+      margin-right: 0;
+      margin-left: 0;
+      display: flex;
+      width: 100%;
+    }
+    .image-section{
+      flex: 0 0 33.333333%;
+      max-width: 33.333333%;
+      background-color: gray;
+    }
+    .band-info{
+      flex: 0 0 66.666667%;
+      max-width: 66.666667%;
+    }
+    .button{
+      border: 1px solid transparent;
+      padding: .375rem .75rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      border-radius: .25rem;
+      transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+      display: inline-block;
+      font-weight: 400;
+      color:white;
+      background-color: tomato;
+      border-color: tomato;
+      a{
+        color: white;
+        font-size: 1rem;
+      }
+    }
+  
+  }
