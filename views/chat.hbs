@@ -2,15 +2,19 @@
 {{#if ifBandMember}}
 <h1>Chat de la banda </h1>
 <p id="band" style="visibility: hidden">{{band.bandname}}</p>
-<p id="username" style="visibility: hidden">{{currentUser}}</p>
+<p id="username">{{currentUser}}</p>
 <div id="messages">
-  {{#each messages}}
-      <p>{{username}}: {{message}} {{#if ifUser }} - <a href="/chat/delete/{{_id}}">Delete</a> {{/if}}</p>
-  {{/each}}
+  {{!-- {{#each messages}} --}}
+  {{!-- {{isUser currentUser username}} --}}
+  {{!-- <p class="user"> --}}
+  {{!-- {{username}}{{! {{message}} --}}
+  {{!-- </p> --}}
+  {{!-- {{/each}} --}}
 </div>
 <p id="typingu"></p>
-<form>
-  <input id="text" autocomplete="off" /><button>Enviar mensaje</button>
+<form class='box' id="scroll">
+  <input id="text" type="text" autocomplete="off" />
+  <input type="submit" value="Enviar mensaje" />
   <script src="/javascripts/chat.js" charset="utf-8"></script>
 </form>
 {{else}}
