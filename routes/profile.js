@@ -37,8 +37,8 @@ router.get('/update/:currentUser', async (req, res, next) => {
   const { currentUser } = req.params;
   try {
     const user = await User.find({nickname: currentUser});
-    console.log(user);
-    res.render('update', { user });
+    const userProfile = user[0];
+    res.render('update', { userProfile });
   } catch (error) {
     next(error);
   }
