@@ -15,7 +15,7 @@ router.get('/:currentUser', async (req, res, next) => {
     const user = await User.find({nickname: currentUser });
     if (user) {
       const isMe = req.session.currentUser._id === user[0]._id.toString();
-      const band = await Band.find({ members: user.id });
+      const band = await Band.find({ members: user[0]._id });
       const userProfile = user[0];
       const notificationsCount = await Notifications.find({
         receiver: req.session.currentUser._id,
