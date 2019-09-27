@@ -18,6 +18,7 @@ body {
 
 .box input[type='email'],
 .box input[type='text'],
+.box input[type='date'],
 .box input[type='location'],
 .box select,
 .box textarea,
@@ -37,6 +38,7 @@ body {
 
 .box input[type='email']:focus,
 .box input[type='text']:focus,
+.box input[type='date']:focus,
 .box select:focus,
 .box textarea:focus,
 .box input[type='location']:focus,

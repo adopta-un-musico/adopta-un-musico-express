@@ -1,7 +1,6 @@
 app-band .band{
   max-width: 540px;
   position: relative;
-  display: flex;
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
@@ -15,7 +14,6 @@ app-band .band{
   .band-section{
     margin-right: 0;
     margin-left: 0;
-    display: flex;
     width: 100%;
   }
   .image-section{
@@ -26,6 +24,7 @@ app-band .band{
   .band-info{
     flex: 0 0 66.666667%;
     max-width: 66.666667%;
+    margin: 0 auto;
   }
   .button{
     border: 1px solid transparent;
