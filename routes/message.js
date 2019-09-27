@@ -1,12 +1,13 @@
 const express = require('express');
 const Message = require('../models/Messages');
+const User = require('../models/User');
 
 const router = express.Router();
 
-router.get('/:userId/all', async (req, res, next) => {
-  const { userId } = req.params;
+router.get('/:currentUser/all', async (req, res, next) => {
+  const { currentUser } = req.params;
   try {
-    const messages = await Message.find({ receiver: userId }).populate(
+    const messages = await Message.find({ receiver: req.session.currentUser._id }).populate(
       'sender',
     );
     res.render('all_messages', { messages });
