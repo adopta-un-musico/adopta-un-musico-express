@@ -33,20 +33,31 @@ router.get('/:userId', (req, res, next) => {
 
 router.post('/:userId/new', async (req, res, next) => {
   const { userId } = req.params;
-  const { name, location, musicalGenres } = req.body;
+  const { name, musicalGenres } = req.body;
   try {
     // eslint-disable-next-line no-unused-vars
-    const band = await Band.create({
-      bandname: name,
-      musicalGenres,
-      location,
-      manager: userId,
+    geocoder.geocode(req.body.location, async (err, data) => {
+      if (err || !data.length) {
+        req.flash('error', 'La dirección no es válida');
+        res.redirect('back');
+      }
+      const lat = data[0].latitude;
+      const lgt = data[0].longitude;
+      const location = data[0].formattedAddress;
+      const band = await Band.create({
+        bandname: name,
+        location,
+        lat,
+        lgt,
+        musicalGenres,
+        manager: userId,
+      });
+      const push = await Band.findByIdAndUpdate(band._id, {
+        $push: { members: userId },
+      });
+      req.flash('info', 'Banda creada correctamente');
+      res.redirect('/home');
     });
-    const push = await Band.findByIdAndUpdate(band._id, {
-      $push: { members: userId },
-    });
-    req.flash('info', 'Banda creada correctamente');
-    res.redirect('/home');
   } catch (error) {
     next(error);
   }

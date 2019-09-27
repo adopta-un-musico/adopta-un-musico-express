@@ -2,7 +2,7 @@
 <h1>Crear Banda</h1>
 <form class="box " action="{{currentUser._id}}/new" method="post">
   <input type="text" name="name" id="name" placeholder="Nombre de la banda">
-  <input type="location" name="location" value="Localización" />
+  <input type="location" name="location" placeholder="Localización" />
   <select name="musicalGenres">
     {{> musicStyles}}
   </select>
