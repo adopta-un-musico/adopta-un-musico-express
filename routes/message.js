@@ -37,9 +37,11 @@ router.post('/send/:receiver/:currentUser', async (req, res, next) => {
   const { messageSend } = req.body;
 
   try {
+    const userReceiver = await User.find({nickname: receiver});
+    const UserSender = await User.find ({nickname: currentUser});
     const messages = await Message.create({
-      sender: currentUser,
-      receiver: receiver,
+      sender: UserSender[0]._id,
+      receiver: userReceiver[0]._id,
       message: messageSend,
     });
     req.flash('info', 'Mensaje enviado!');
