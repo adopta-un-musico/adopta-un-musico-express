@@ -3,108 +3,110 @@
   <div class="wrap">
     <div class="band-profile">
       <div class="card">
-          {{#if noBand}}
-              <p>{{noBand}}</p>
-          {{else}}
-              <img class="profile-img" src="/images/mexican-music.jpeg" alt="mexican-music">
-              <h1 style="margin-top: 40px;">{{band.bandname}}</h1>
-              <p>Ciudad: {{band.location}}</p>
-              <p>Generos musicales: {{band.musicalGenres}}</p>
+        {{#if noBand}}
+        <p>{{noBand}}</p>
+        {{else}}
+        <img class="profile-img" src="/images/mexican-music.jpeg" alt="mexican-music">
+        <h1 style="margin-top: 40px;">{{band.bandname}}</h1>
+        <p>Ciudad: {{band.location}}</p>
+        <p>Generos musicales: {{band.musicalGenres}}</p>
       </div>
-     <div class="card-members"> 
-      <h2>Members</h2>
-      {{#each band.members}}
+      <div class="card-members">
+        <h2>Members</h2>
+        {{#each band.members}}
         <a class="users" href="/profile/{{this._id}}">{{this.nickname}}</a>
-      {{/each}}
+        {{/each}}
+      </div>
     </div>
-  </div>
-  <div class="action-profile">
+    <div class="action-profile">
       <div class="user-actions">
-          <h2>Actions</h2>
-          <div class="arrow-actions"></div>
-          <div class="dropdown-actions">
-                <button type="button" class="close-menu" style="visibility: hidden">X</button>
-                {{#if isMe}}
-                    <button class="button-profile"><a href="/bandas/{{band._id}}/update/">Actualizar Banda</a></button>
-                    <button class="button-profile"><a href="/events/new/{{band._id}}/">Añadir Evento</a></button>
-                    <button class="alert"><a href="/bandas/{{band._id}}/delete">Eliminar Banda</a></button>
-                    <button class="button-profile"><a href="/bandas/petitionc/{{band._id}}/check/">Revisar Peticiones</a></button>
-                {{/if}}
-                {{#if ifBand}}
-                    <button class="button-profile"><a href="/chat/{{band.id}}/{{currentUser.nickname}}/{{band.bandname}}">Chat</a></button>
-                    <button class="alert"><a href="/bandas/{{band._id}}/{{currentUser._id}}/leave">Salir de la Banda</a></button>
-                {{else}}
-                {{#if ifPetition}}
-                    <button class="button-profile"><a href="">Tu petición está siendo valorada por la banda.</a></button>
-                {{else}}
-                {{#if ifOpenRequest}}
-                    <button class="button-profile"><a href="/bandas/petition/{{band._id}}/{{currentUser._id}}">Enviar peticion a la Banda</a></button>
-                {{else}}
-                    <p>Las peticiones están cerradas</p>
-                {{/if}}
-                {{/if}}
-                {{/if}}
-          </div>
+        <h2>Actions</h2>
+        <div class="arrow-actions"></div>
+        <div class="dropdown-actions">
+          <button type="button" class="close-menu" style="visibility: hidden">X</button>
+          {{#if isMe}}
+          <button class="button-profile"><a href="/bandas/{{band._id}}/update/">Actualizar Banda</a></button>
+          <button class="button-profile"><a href="/events/new/{{band._id}}/">Añadir Evento</a></button>
+          <button class="alert"><a href="/bandas/{{band._id}}/delete">Eliminar Banda</a></button>
+          <button class="button-profile"><a href="/bandas/petitionc/{{band._id}}/check/">Revisar Peticiones</a></button>
+          {{/if}}
+          {{#if ifBand}}
+          <button class="button-profile"><a
+              href="/chat/{{band.id}}/{{currentUser.nickname}}/{{band.bandname}}">Chat</a></button>
+          <button class="alert"><a href="/bandas/{{band._id}}/{{currentUser._id}}/leave">Salir de la Banda</a></button>
+          {{else}}
+          {{#if ifPetition}}
+          <button class="button-profile"><a href="">Tu petición está siendo valorada por la banda.</a></button>
+          {{else}}
+          {{#if ifOpenRequest}}
+          <button class="button-profile"><a href="/bandas/petition/{{band._id}}/{{currentUser._id}}">Enviar peticion a
+              la Banda</a></button>
+          {{else}}
+          <p>Las peticiones están cerradas</p>
+          {{/if}}
+          {{/if}}
+          {{/if}}
         </div>
+      </div>
     </div>
     <div class="events-actions">
-          <h2>Next events</h2>
+      <h2>Next events</h2>
       <div class="arrow-events"></div>
       <div class="dropdown-events">
         <button type="button" class="close-menu-events" style="visibility: hidden">X</button>
-          {{#if event}}
-          {{#each event}}
-            <h3>{{event_name}}</h3>
-            <p>Location: {{location}}</p>
-            <p>Date: {{date}}</p>
-            <button><a href="/events/detail/{{_id}}">Ver en detalle</a></button>
-          {{/each}}
-          {{else}}
-            <p>Esta banda todavía no tiene ningún evento.</p>
-          {{/if}}
-          {{/if}}
+        {{#if event}}
+        {{#each event}}
+        <h3>{{event_name}}</h3>
+        <p>Location: {{location}}</p>
+        <p>Date: {{date}}</p>
+        <button class="button-profile"><a href="/events/detail/{{_id}}">Ver en detalle</a></button>
+        {{/each}}
+        {{else}}
+        <p>Esta banda todavía no tiene ningún evento.</p>
+        {{/if}}
+        {{/if}}
       </div>
     </div>
-<script>
-// ACTIONS
-$('.arrow-actions').click(function(){
+    <script>
+      // ACTIONS
+      $('.arrow-actions').click(function () {
         $('.dropdown-actions').css({
-             "visibility": "visible",
-             "opacity": "1",
-             "display": "block", 
+          "visibility": "visible",
+          "opacity": "1",
+          "display": "block",
         });
-        $(".close-menu").css({"visibility": "visible"})
-        $(".arrow-actions").css({"visibility": "hidden"})
-});
-$('.close-menu').click(function(){
+        $(".close-menu").css({ "visibility": "visible" })
+        $(".arrow-actions").css({ "visibility": "hidden" })
+      });
+      $('.close-menu').click(function () {
         $('.dropdown-actions').css({
-            "visibility": "hidden",
-             "opacity": "0",
-             "display": "none", 
+          "visibility": "hidden",
+          "opacity": "0",
+          "display": "none",
         });
-        $(".close-menu").css({"visibility": "hidden"})
-        $(".arrow-actions").css({"visibility": "visible"})
-});
-// EVENTS 
-$('.arrow-events').click(function(){
+        $(".close-menu").css({ "visibility": "hidden" })
+        $(".arrow-actions").css({ "visibility": "visible" })
+      });
+      // EVENTS 
+      $('.arrow-events').click(function () {
         $('.dropdown-events').css({
-             "visibility": "visible",
-             "opacity": "1",
-             "display": "block", 
+          "visibility": "visible",
+          "opacity": "1",
+          "display": "block",
         });
-        $(".close-menu-events").css({"visibility": "visible"})
-        $(".arrow-events").css({"visibility": "hidden"})
-});
-$('.close-menu-events').click(function(){
+        $(".close-menu-events").css({ "visibility": "visible" })
+        $(".arrow-events").css({ "visibility": "hidden" })
+      });
+      $('.close-menu-events').click(function () {
         $('.dropdown-events').css({
-            "visibility": "hidden",
-             "opacity": "0",
-             "display": "none", 
+          "visibility": "hidden",
+          "opacity": "0",
+          "display": "none",
         });
-        $(".close-menu-events").css({"visibility": "hidden"})
-        $(".arrow-events").css({"visibility": "visible"})
-});
+        $(".close-menu-events").css({ "visibility": "hidden" })
+        $(".arrow-events").css({ "visibility": "visible" })
+      });
 
-</script>
+    </script>
   </div>
 </app-profile>

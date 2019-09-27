@@ -1,9 +1,11 @@
 {{> menu}}
 <h1>Crear Evento</h1>
-<form action="/events/{{bandId}}/add" method="POST">
-   <input type="text" name="name" id="name" placeholder="Nombre del evento">
-   <input type="date" name="date">
-   <input type="text" name="location" id="location" placeholder="Localización">
-   <input type="submit" value="Crear Evento" />
-   {{> backButton}}
+<form class="box" action="/events/{{bandId}}/add" method="POST">
+  <input type="text" name="name" id="name" placeholder="Nombre del evento">
+  <input id="today" type="date" name="date">
+  <input type="text" name="location" id="location" placeholder="Localización">
+  <input type="submit" value="Crear Evento" />
 </form>
+{{> backButton}}
+<script>document.querySelector("#today").valueAsDate = new Date();
+</script>
