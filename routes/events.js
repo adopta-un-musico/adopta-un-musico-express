@@ -191,12 +191,13 @@ router.post('/:eventId/upd', async (req, res, next) => {
     next(error);
   }
 });
-router.get('/:userId/recommendations', async (req, res, next) => {
-  const { userId } = req.params;
+router.get('/:currentUser/recommendations', async (req, res, next) => {
+  const { currentUser } = req.params;
 
   try {
+    const user = await User.find({nickname: currentUser});
     const recommendations = await Events.find({
-      recomendations: userId,
+      recomendations: user._id,
     }).populate('event_manager');
     res.render('my_recommendations', { recommendations });
   } catch (error) {

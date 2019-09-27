@@ -9,19 +9,20 @@ const formidable = require('formidable');
 const router = express.Router();
 
 /* GET users listing. */
-router.get('/:userId', async (req, res, next) => {
-  const { userId } = req.params;
+router.get('/:currentUser', async (req, res, next) => {
+  const { currentUser } = req.params;
   try {
-    const user = await User.findById(userId);
+    const user = await User.find({nickname: currentUser });
     if (user) {
-      const isMe = req.session.currentUser._id === user._id.toString();
-      const band = await Band.find({ members: userId });
+      const isMe = req.session.currentUser._id === user[0]._id.toString();
+      const band = await Band.find({ members: user.id });
+      const userProfile = user[0];
       const notificationsCount = await Notifications.find({
         receiver: req.session.currentUser._id,
         visited: 0,
       }).count();
       res.render('profile', {
-        user,
+        userProfile,
         isMe,
         band,
         notificationsCount,
@@ -32,18 +33,19 @@ router.get('/:userId', async (req, res, next) => {
   }
 });
 
-router.get('/update/:userId', async (req, res, next) => {
-  const { userId } = req.params;
+router.get('/update/:currentUser', async (req, res, next) => {
+  const { currentUser } = req.params;
   try {
-    const user = await User.findById(userId);
-    res.render('update', { user });
+    const user = await User.find({nickname: currentUser});
+    const userProfile = user[0];
+    res.render('update', { userProfile });
   } catch (error) {
     next(error);
   }
 });
 
-router.post('/:userId', async (req, res, next) => {
-  const { userId } = req.params;
+router.post('/:currentUser', async (req, res, next) => {
+  const { currentUser } = req.params;
 
   const {
     email,
@@ -62,7 +64,8 @@ router.post('/:userId', async (req, res, next) => {
     // const direction =  form.on('file', function (name, file){
     //  console.log('Uploaded ' + file.name);
     // });
-    const user = await User.findByIdAndUpdate(userId, {
+    const userId = await User.find({nickname: currentUser})
+    const user = await User.findByIdAndUpdate(userId._id, {
       email,
       nickname,
       musicalGenres,

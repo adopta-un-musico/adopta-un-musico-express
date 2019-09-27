@@ -9,6 +9,7 @@ const UserSchema = new Schema(
     musicalGenres: { type: Array, index: true },
     instruments: { type: Array, index: true },
     location: { type: String, index: true },
+    nickname: { type: String},
     lat: Number,
     lgt: Number,
     image: { type: String },
