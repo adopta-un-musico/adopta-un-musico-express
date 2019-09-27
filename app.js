@@ -30,8 +30,21 @@ const notificationsRouter = require('./routes/notifications');
 const app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views' ));
 app.set('view engine', 'hbs');
+const isUser = hbs.registerHelper('isUser', (username, user) => {
+  console.log("username " + username);
+  console.log("user " + user);
+  if(username === user) {
+    
+    return true;
+
+  } else {
+
+   return false;
+  }
+});
+
 
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
 

@@ -16,7 +16,6 @@ router.get('/:bandId/:currentUser/:bandname', async (req, res, next) => {
         return true;
       }
     });
-    console.log(messages);
     res.render('chat', {
       currentUser, band, ifBandMember, messages,
     });
