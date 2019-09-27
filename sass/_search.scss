@@ -38,7 +38,15 @@ app-search {
 //     padding: 2px 16px;
 //   }
 
-.band{
+.box{
+    padding: 2%;
+    margin-bottom: 5%;
+}
+
+h1{
+    text-align: center;
+}
+.user{
     max-width: 540px;
     position: relative;
     display: flex;
@@ -52,21 +60,32 @@ app-search {
     color: black;
     margin-bottom: 1rem;
     box-sizing: border-box;
-    .band-section{
+
+    .user-section{
       margin-right: 0;
       margin-left: 0;
       display: flex;
       width: 100%;
     }
+
     .image-section{
       flex: 0 0 33.333333%;
       max-width: 33.333333%;
       background-color: gray;
+      vertical-align: middle;
+      display:table-cell;
+      display: flex;
+      justify-content: center;
+    align-items: center;
+    padding: 1%;
     }
-    .band-info{
+
+    .user-info{
       flex: 0 0 66.666667%;
       max-width: 66.666667%;
+      padding: 2%;
     }
+
     .button{
       border: 1px solid transparent;
       padding: .375rem .75rem;
@@ -83,6 +102,5 @@ app-search {
         color: white;
         font-size: 1rem;
       }
-    }
-  
-  }
+    }}
+}

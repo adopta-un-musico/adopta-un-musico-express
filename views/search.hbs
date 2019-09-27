@@ -1,19 +1,26 @@
 <app-search>
   {{> menu}}
-    <h2>adoptaunmusico.com</h2>
-    <div class="content">
-      <form class="box" id="form" action="/search" method="POST">
-        <input type="search" id="search" name="search" placeholder="Search ...">
-      </form>
-    </div>
+  <div class="wrap">
+    <h1>adoptaunmusico.com</h1>
+    <form class="box" id="form" action="/search" method="POST">
+      <input type="search" id="search" name="search" placeholder="Search ...">
+    </form>
 
-    <div class="card">
-      <div class="container"></div>
-      {{#each users}}
-        <img class = "avatar" src="/images/avatar-1.png" alt="Avatar" style="width:100%">
-        <h2>{{this.nickname}}</h2>
-        <h2>{{ this.email }}</h2>
-        {{/each}}
+    {{#each users}}
+    <div class="user">
+      <div class="user-section">
+        <div class="image-section">
+          <img class="avatar" src="/images/avatar-1.png" alt="Avatar" style="width:100%">
+        </div>
+        <div class="user-info">
+          <h2>{{ this.nickname }}</h2>
+          <p>{{ this.email }}</p>
+        </div>
       </div>
     </div>
+{{/each}}
+  </div>
+{{> backButton}}
 </app-search>
+
+
