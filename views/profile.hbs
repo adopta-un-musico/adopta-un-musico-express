@@ -24,8 +24,8 @@
                              <button class="button-profile"><a href="/events/{{currentUser.nickname}}/recommendations">Ver Recomendaciones</a></button>
                              <button class="button-profile"><a href="/events/{{currentUser.nickname}}/event">Eventos que asistiré</a></button>
                         {{else}}
-                             <button class="button-profile"><a href="/events/{{currentUser.nickname}}/recommendations">Ver Recomendaciones</a></button>
-                             <button class="button-profile"><a href="/messages/send/{{currentUser.nickname}}">Enviar mensaje</a></button>
+                             <button class="button-profile"><a href="/events/{{userProfile.nickname}}/recommendations">Ver Recomendaciones</a></button>
+                             <button class="button-profile"><a href="/messages/send/{{userProfile.nickname}}">Enviar mensaje</a></button>
                         {{/if}}
                     </div>
             </div>
