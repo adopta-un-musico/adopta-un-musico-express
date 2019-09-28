@@ -46,7 +46,7 @@ app-search {
 h1{
     text-align: center;
 }
-.user{
+.user-card{
     max-width: 540px;
     position: relative;
     display: flex;
@@ -70,8 +70,7 @@ h1{
 
     .image-section{
       flex: 0 0 33.333333%;
-      max-width: 33.333333%;
-      background-color: gray;
+      max-width: 35%;
       vertical-align: middle;
       display:table-cell;
       display: flex;
