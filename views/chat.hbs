@@ -3,12 +3,18 @@
 <h1>Chat de la banda </h1>
 <p id="band" style="visibility: hidden">{{band.bandname}}</p>
 <p id="username">{{currentUser}}</p>
-<div id="messages">
-   {{#each messages}} 
-      {{isUser  username ../currentUser}} 
-          <p class="user"> 
-            {{username}}: {{message}} 
-          </p>
+<div id="messages" style=" height: 300px; overflow: hidden; overflow-y: scroll;">
+  {{#each messages}}
+  {{#if (isUser  username ../currentUser)}}
+  {{!-- {{isUser  username ../currentUser}}  --}}
+  <p class="user">
+    {{username}}: {{message}}
+  </p>
+  {{else}}
+  <p class="other-user">
+    {{username}}: {{message}}
+  </p>
+  {{/if}}
   {{/each}}
 </div>
 <p id="typingu"></p>
