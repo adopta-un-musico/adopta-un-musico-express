@@ -10,7 +10,6 @@
 // .messages p {
 //   color: red;
 // }
-
 .user {
   position: relative;
   font-family: arial;
@@ -19,17 +18,18 @@
   color: #fff;
   border-radius: 10px;
   padding: 15px;
-  max-width: 400px;
+  width: 50%;
+  word-break: break-word;
   margin: 0 5% 10%;
 }
 
 .user:after {
-  content: '';
+  content: "";
   border: 20px solid transparent;
   border-left: 20px solid #a53d38;
   border-top: 20px solid #a53d38;
   position: absolute;
-  bottom: -20px;
+  bottom: -25px;
   right: 80%;
 }
 
@@ -41,12 +41,14 @@
   color: #fff;
   border-radius: 10px;
   padding: 15px;
-  max-width: 400px;
   margin: 0 5% 10%;
+  width: 50%;
+  right: -118px;
+  word-break: break-word;
 }
 
 .other-user:after {
-  content: '';
+  content: "";
   border: 20px solid transparent;
   border-right: 20px solid #383aa5;
   border-top: 20px solid #383aa5;
