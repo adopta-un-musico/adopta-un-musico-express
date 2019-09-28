@@ -1,12 +1,13 @@
 const express = require('express');
 const Message = require('../models/Messages');
+const User = require('../models/User');
 
 const router = express.Router();
 
-router.get('/:userId/all', async (req, res, next) => {
-  const { userId } = req.params;
+router.get('/:currentUser/all', async (req, res, next) => {
+  const { currentUser } = req.params;
   try {
-    const messages = await Message.find({ receiver: userId }).populate(
+    const messages = await Message.find({ receiver: req.session.currentUser._id }).populate(
       'sender',
     );
     res.render('all_messages', { messages });
@@ -26,9 +27,9 @@ router.get('/detail/:sender', async (req, res, next) => {
   }
 });
 
-router.get('/send/:receiver', (req, res, next) => {
-  const { receiver } = req.params;
-  res.render('send_message', { receiver });
+router.get('/send/:userSender', (req, res, next) => {
+  const { userSender } = req.params;
+  res.render('send_message', { userSender });
 });
 router.post('/send/:receiver/:currentUser', async (req, res, next) => {
   const { receiver } = req.params;
@@ -36,9 +37,11 @@ router.post('/send/:receiver/:currentUser', async (req, res, next) => {
   const { messageSend } = req.body;
 
   try {
+    const userReceiver = await User.find({nickname: receiver});
+    const UserSender = await User.find ({nickname: currentUser});
     const messages = await Message.create({
-      sender: currentUser,
-      receiver: receiver,
+      sender: UserSender[0]._id,
+      receiver: userReceiver[0]._id,
       message: messageSend,
     });
     req.flash('info', 'Mensaje enviado!');

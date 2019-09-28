@@ -4,13 +4,18 @@ const { Schema } = mongoose;
 
 const UserSchema = new Schema(
   {
+    nickname: { type: String, required: true },
     email: { type: String, required: true },
     hashedPassword: { type: String, required: true },
-    musicalGenres:{ type: Array },
-    instruments: { type: Array },
-    location: { type: String },
-    nickname:  { type: String },
-    image: {type: String},
+    musicalGenres: { type: Array, index: true },
+    instruments: { type: Array, index: true },
+    location: { type: String, index: true },
+    nickname: { type: String},
+    lat: Number,
+    lgt: Number,
+    image: { type: String },
+    // location: {type: Array, },
+    loc: { type: String },
   },
   {
     timestamps: {

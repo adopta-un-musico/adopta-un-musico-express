@@ -26,4 +26,10 @@ app-index {
   .button {
     @include button;
   }
+
+  .negative {
+    @include button;
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+  }
 }

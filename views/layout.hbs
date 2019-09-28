@@ -16,12 +16,22 @@
   <div class="notifications">
     {{#if infoMessages}}
     <p class="info">{{infoMessages}}</p>
+    <button type="button" class="close">X</button>
     {{/if}}
     {{#if errorMessages }}
     <p class="error">{{errorMessages}}</p>
+     <button type="button" class="close">X</button>
     {{/if}}
   </div>
   {{{body}}}
+  <script>
+    $(document).ready(function () {
+    $('.close').click(function () {
+       $('.notifications').css({'visibility': 'hidden'});
+    })
+  });
+
+  </script>
 </body>
 
 </html>

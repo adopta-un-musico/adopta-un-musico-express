@@ -6,7 +6,6 @@ const Chat = require('../models/Chat_model');
 const router = express.Router();
 
 router.get('/:bandId/:currentUser/:bandname', async (req, res, next) => {
-  
   const { bandId, currentUser, bandname } = req.params;
 
   try {
@@ -17,10 +16,10 @@ router.get('/:bandId/:currentUser/:bandname', async (req, res, next) => {
         return true;
       }
     });
-    console.log(messages);
-    res.render('chat', { currentUser, band, ifBandMember, messages });
+    res.render('chat', {
+      currentUser, band, ifBandMember, messages,
+    });
   } catch (error) {
-
     next(error);
   }
 });

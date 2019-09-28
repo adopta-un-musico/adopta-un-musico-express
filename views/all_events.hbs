@@ -1,14 +1,28 @@
-<h1>Eventos</h1>
-{{#if events}}
-{{#each events}}
-<p>Nombre: {{event_name}}</p>
-<p>Ubicación. {{location}}</p>
-<p>Fecha: {{date}}</p>
-<p>Banda: {{event_manager.bandname}}</p>
-<p>Generos musicales de la banda: {{event_manager.musicalGenres}}</p>
-<button><a href="/events/detail/{{_id}}">Ver en detalle</a></button>
-{{/each}}
-{{else}}
-<p>Todavía no hay ningun evento</p>
-{{/if}}
-{{> backButton}}
+{{> menu}}
+<app-events>
+    <div class="wrap">
+        <h1>Events</h1>
+        {{#if events}}
+        {{#each events}}
+        <div class="events">
+            <div class="events-section">
+                <div class="image-section">
+                    <p style="background: white"><img class="profile-img" src="/images/oktober.jpeg" alt="mexican-music" style="width:75%"></p>
+                </div>
+                <div class="event-info">
+                    <h3>{{event_name}}</h3>
+                    <p>Location: {{location}}</p>
+                    <p>Date: {{date}}</p>
+                    <p>Band: {{event_manager.bandname}}</p>
+                    <p>Musical genres: {{event_manager.musicalGenres}}</p>
+                    <button class="button"><a href="/events/detail/{{_id}}">Ver en detalle</a></button>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        {{else}}
+        <p>Todavía no hay ningun evento</p>
+        {{/if}}
+    </div>
+    {{> backButton}}
+</app-events>

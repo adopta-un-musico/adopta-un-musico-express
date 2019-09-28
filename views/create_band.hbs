@@ -1,13 +1,10 @@
+{{> menu}}
 <h1>Crear Banda</h1>
-<form action="{{currentUser._id}}/new" method="post">
+<form class="box " action="{{currentUser._id}}/new" method="post">
   <input type="text" name="name" id="name" placeholder="Nombre de la banda">
-  <select name="location">
-    <option value="Barcelona">Barcelona</option>
-    <option value="Madrid">Madrid</option>
-  </select>
+  <input type="location" name="location" placeholder="Localización" />
   <select name="musicalGenres">
-    <option value="Pop">Pop</option>
-    <option value="Rock">Rock</option>
+    {{> musicStyles}}
   </select>
   <input type="submit" value="Crear banda" />
 </form>

@@ -1,42 +1,43 @@
-<app-home>
-  <div class="wrapper">
-    <header class="header">
-      <a href="#" class="menu_on">
-        <span></span>
-        <span></span>
-        <span></span>
-      </a>
-      <p class="p-align">Hola {{user.nickname}}!</p>
-    </header>
-    <nav>
-      <ul>
-        <li><a href="/profile/{{currentUser._id}}">Ver Perfil</a></li>
-        <li><a href="/bandas/{{currentUser._id}}">Crear Banda</a></li>
-        <li><a href="/bandas/all">Ver todas las Bandas</a></li>
-        <li><a href="/events/all">Ver todos los Eventos</a></li>
-        <li><a href="/logout">Cerrar Sesión</a></li>
-      </ul>
-    </nav>
-  </div>
-</app-home>
-<script type="text/javascript">
-  $(document).ready(function () {
-    $('.menu_on').click(function () {
-      $('.menu_on').toggleClass('visible_span');
-      $('nav').toggleClass('visible_menu');
-    })
-  });
-</script>
+{{> menu}}
 <app-search>
   <div class="container">
     <app-search>
       <div class="content">
-        <label>Buscar</label>
-        <input type="search" placeholder="Search ...">
+        <form class="box" id="form" action="/search" method="POST">
+          <input type="search" id="search" name="search" placeholder="Search ...">
+        </form>
       </div>
     </app-search>
   </div>
 </app-search>
-
-<div>
-</div>
+<app-band>
+    <div class="wrap">
+        {{#if bands}}
+        <h3>Bandas cerca de ti</h3>
+        {{#each bands}}
+        <div class="band">
+            <div class="band-section">
+                <div class="image-section-band">
+                    <img class="avatar" src="/images/beatles.jpeg" alt="Avatar" style="width:80%">
+                </div>
+                <div class="band-info">
+                    <h2>{{bandname}}</h2>
+                    <p>Live in {{location}}</p>
+                    <p>Style: {{musicalGenres}}</p>
+                    <button class="button"><a href="/bandas/profile/{{_id}}">Band Profile</a></button>
+                </div> 
+            </div>
+        </div>
+        {{/each}}
+        {{else}}
+        <app-noband>
+          <h3 style="text-align: center; margin-top: 40px;">Bandas cerca de ti</h3>
+              <div class="card">
+                  <div class="content">
+                      <span>Ups!!! No hay bandas cerca de ti o todavía no has configurado tu localización, configúrala <a href="profile/update/{{user._id}}" style="font-size: 14px">ahora!</a></span> 
+                  </div>             
+              </div>
+        </app-noband>
+        {{/if}}
+    </div>
+</app-band>
